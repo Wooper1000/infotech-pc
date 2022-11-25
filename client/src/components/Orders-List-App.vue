@@ -20,12 +20,16 @@ export default {
   },
   data() {
     return {
-      orders:[]
+
     }
   },
   computed: {
+    filtersStatus(){
+     return this.$store.state.statusFilters.currentStatus
+    }
+    ,
     days() {
-      return this.$store.getters.ordersSortedByDays
+      return this.$store.getters.ordersSortedByDays(this.filtersStatus)
     }
   }
 }
