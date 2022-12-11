@@ -1,11 +1,10 @@
 <template>
   <div class="dialog"
        tabindex="0"
-       @click="hideDialog"
-       v-if="show"
+       v-show="show"
   >
-    <div class="content-container" @click.stop>
-      <MyButtonApp class="close-button" autofocus @keydown.esc="hideDialog" @click="hideDialog" value="X"/>
+    <div class="content-container">
+      <MyButtonApp class="close-button" autofocus @keydown.esc="hideDialog" @click.stop="hideDialog" value="X"/>
       <div class="content">
       <slot>
       </slot>
@@ -24,24 +23,12 @@ export default {
       type: Boolean,
       default: false
     },
-    timer:{
-      type:Number,
-      default: null
-    }
   },
-  data(){
-    return{
-      showModal : this.show
-    }
-  },
-  created() {
-    if(this.timer){
-      setTimeout(()=>this.showModal=false,this.timer)
-    }
-  },
+
+
   methods:{
     hideDialog(){
-      this.$emit('update:show',false)
+      this.$emit('close')
     }
   },
   components:{

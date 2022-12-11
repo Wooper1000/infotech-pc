@@ -1,6 +1,4 @@
 <template>
-  <ModalWindowApp>
-    <ModalWindowApp v-if="show" :timer="3000"> Суп из тысячи залуп </ModalWindowApp>
     <div class="inputList">
       <div class="input-list-item">
         <input class='input-list-content' type="number" id="start" v-model="min" @keydown.enter="getClosedContracts">
@@ -24,13 +22,11 @@
         <a v-if="flat.disabled && !flat.isCableAvailable" :href="'tel:'+flat.disabledContractTelephone"><img class="flat-status-icon"  src="../assets/icons/telephone-call.png" alt="need to call"></a>
       </div>
     </div>
-    <div @click="show=true">Показать залупу</div>
-  </ModalWindowApp>
+
 </template>
 
 <script>
 import MyButtonApp from "@/components/My-Button-App";
-import ModalWindowApp from "@/components/Modal-Window-App";
 import config from "../config/config.json"
 import PreloaderApp from "@/components/Preloader-App";
 
@@ -38,7 +34,6 @@ import PreloaderApp from "@/components/Preloader-App";
 export default {
   name: "Closed-Contract-App.vue",
   components: {
-    ModalWindowApp,
     MyButtonApp,
     PreloaderApp
   },
@@ -49,7 +44,7 @@ export default {
       flats: [],
       flatListVisibility: false,
       isLoading:false,
-      show:false
+
     }
   },
   props: {
@@ -70,9 +65,8 @@ export default {
       return {
         color:flat['disabled'] ? 'orange' : flat['isActive'] ? 'green':flat.isCableAvailable?'red':'gray'
       }
-    }
-  },
-  computed: {}
+    },
+  }
 }
 </script>
 

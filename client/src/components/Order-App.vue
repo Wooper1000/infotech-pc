@@ -13,7 +13,7 @@
       </div>
       <div class="order-info" >
         <div class="order-status"
-             :class="{ 'no-document': order['ТекущийСтатус']==='Не хватает документов' }" @onclick="showComments"
+             :class="{ 'no-document': order['ТекущийСтатус']==='Не хватает документов' }" @click="showComments"
         >
           {{ order['ТекущийСтатус'] }}
         </div>
@@ -40,30 +40,49 @@
     <OrderDetailsApp :order="order" v-if="detailsVisibility"/>
     <MyButtonApp  @click="showDetails(false)" v-if="detailsVisibility" value="скрыть"/>
   </div>
+  <ModalWindowApp :show="historyModalVisibility" @close="historyModalVisibility=!historyModalVisibility" >
+    <ol>
+      <li v-for="note in orderHistory" :key="note['Период']" style="margin: 10px">
+        {{note['Комментарий']}}
+      </li>
+    </ol>
+
+  </ModalWindowApp>
 </template>
 
 <script>
 import OrderDetailsApp from "@/components/Order-Details-App";
 import MyButtonApp from "@/components/My-Button-App";
+import {api} from "@/api";
+
+import ModalWindowApp from "@/components/Modal-Window-App";
 export default {
   name: "Order-app.vue",
   components: {
+    ModalWindowApp,
     OrderDetailsApp,
-    MyButtonApp
+    MyButtonApp,
   },
   props:{
-    order:Object
+    order:Object,
   },
   data(){
     return{
-      detailsVisibility:false
+      detailsVisibility:false,
+      orderHistory:null,
+      historyModalVisibility:false
     }
   },
   methods:{
     showDetails(value){
 this.detailsVisibility = value
     },
-    showComments(){}
+    async showComments(){
+      let history = await api.getJobHistory(this.order['Номер'])
+      this.orderHistory = history
+      this.historyModalVisibility = true
+      console.log(history)
+    }
   },
   computed:{
     isLoading(){

@@ -1,7 +1,11 @@
 import instance from "../midddleware/auth-request.mjs";
-import fs from "fs";
 import dateFormat from "dateformat";
 
+
+export const test = async ()=>{
+    let response = await instance.get(`Services/get?format=v2`)
+    return response.data['Answer']
+}
 export const getJobList = async ()=>{
 let response = await instance.post(`joblist/get`)
     return response.data['Answer']
@@ -17,6 +21,7 @@ let response = await instance.get(`/call/ticket?Key=${key}`)
 }
 export const getAddressUid = async (uid)=>{
     let promise = await instance.post(`/addresses/getbyphaddress?full&uid=${uid}`).catch(err=>console.log('Ошибка получения UID',uid))
+    console.log(promise)
     return {
         uid: promise.data['Список'][0]['Ссылка'],
         name: promise.data['Список'][0]['Наименование'],
@@ -68,7 +73,6 @@ export const getContractInfo = async (contract) => {
     let promise =  await instance.get(`Tickets/FillByContract?number=${contract}`).catch(err=>console.log(err))
     return promise.data['Answer']
 }
-
 export const getReport = async (start,finish,variant) => {
     let startDate = dateFormat(start, "yyyy-mm-dd") + "T00:00:00"
     let endDate = dateFormat(finish, "yyyy-mm-dd") + "T23:59:59"
@@ -91,4 +95,7 @@ export const getReport = async (start,finish,variant) => {
     })
     return promise.data['Answer']
 }
-
+export const getJobHistory = async(orderNumber) => {
+    let promise = await instance.get(`/job/history?number=${orderNumber}`)
+    return promise.data['Answer']
+}

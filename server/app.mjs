@@ -10,9 +10,15 @@ import {
     getTicket,
     makeCall,
     getContractInfo,
-    getReport
+    getReport,
+    getJobHistory,
+    test
 } from "./infotech-requests/requests.mjs";
+
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
+
+
+
 
 
 const app = express()
@@ -116,4 +122,12 @@ app.get('/get-report', async (req, res) => {
     let buff = new Buffer(report, 'base64');
     let text = buff.toString('utf8');
     res.send(text.split('{16,')[20].split(',')[4].replace(/[^0-9]/g, ""))
+})
+app.get('/get-job-history', async (req, res) => {
+    let history = await getJobHistory(req.query['order-number'])
+    res.send(history)
+})
+app.get('/test', async (req, res) => {
+    let data = await test(req.query['option'])
+    res.send(data)
 })
