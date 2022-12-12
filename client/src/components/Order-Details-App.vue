@@ -23,7 +23,7 @@
         {{order['ДополнительнаяИнформация']}}
       </div>
     </div>
-    <div class="description">
+    <div v-if=order.ticket class="description">
       <h4 class="description-header">Услуги</h4>
         <ol class="description-text" >
           <li v-for="service in order.ticket['Services']" :key="service['УслугаИД']">

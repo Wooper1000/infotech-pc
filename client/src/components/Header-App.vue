@@ -6,7 +6,7 @@
     <img @click="menuVisibility=true" class="menu-icon" src="../assets/icons/menu-button-of-three-horizontal-lines.png"
          alt="menu">
   </div>
-  <ModalWindowApp v-model:show=menuVisibility>
+  <ModalWindowApp v-model:show=menuVisibility @close="menuVisibility=!menuVisibility">
     <FiltersListApp v-model:show='menuVisibility'/>
   </ModalWindowApp>
 </template>
