@@ -1,19 +1,19 @@
 <template>
-  <ModalWindowApp>
+
     <input ref="file" type='file'  multiple/>
     <MyButtonApp value="Загрузить" @click="handleFileUpload"/>
-  </ModalWindowApp>
+
 </template>
 
 <script>
 import MyButtonApp from "@/components/My-Button-App";
-import ModalWindowApp from "@/components/Modal-Window-App";
+
 import config from "../config/config.json"
 import {ref} from "vue"
+import {useToast} from "vue-toastification"
 export default {
   name: "Upload-Photo-App.vue",
   components: {
-    ModalWindowApp,
     MyButtonApp
   },
   props:{
@@ -22,6 +22,7 @@ export default {
     }
   },
   setup(props) {
+    const toast = useToast();
     const file = ref(null)
     const handleFileUpload = async() => {
       let photos = file.value.files
@@ -33,11 +34,13 @@ export default {
           method:'POST',
           body:data
         })
-        console.log(response)
+ let textResult = await response.json()
+      textResult.forEach((result,idx)=>{toast.info(idx+1 + '-я фотография- '+result)})
+      this.$emit('close')
     }
     return {
       handleFileUpload,
-      file
+      file,
     }
 }
 }

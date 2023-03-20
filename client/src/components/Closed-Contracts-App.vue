@@ -1,7 +1,7 @@
 <template>
     <div class="inputList">
       <div class="input-list-item">
-        <input class='input-list-content' type="number" id="start" v-model="min" @keydown.enter="getClosedContracts">
+        <input class='input-list-content' autofocus type="number" id="start" v-model="min" @keydown.enter="getClosedContracts">
         <label class='input-list-content' for="start">Начало</label>
       </div>
       <div class="input-list-item">

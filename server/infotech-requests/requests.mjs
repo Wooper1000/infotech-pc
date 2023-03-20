@@ -1,5 +1,6 @@
 import instance from "../midddleware/auth-request.mjs";
 import dateFormat from "dateformat";
+import equipmentSchedule from "../equipmentTable/equipment.json" assert { type: "json" };
 
 
 export const test = async ()=>{
@@ -21,7 +22,6 @@ let response = await instance.get(`/call/ticket?Key=${key}`)
 }
 export const getAddressUid = async (uid)=>{
     let promise = await instance.post(`/addresses/getbyphaddress?full&uid=${uid}`).catch(err=>console.log('Ошибка получения UID',uid))
-    console.log(promise)
     return {
         uid: promise.data['Список'][0]['Ссылка'],
         name: promise.data['Список'][0]['Наименование'],
@@ -69,7 +69,6 @@ export const getContractStatus = async (contracts) => {
     return promise.data['Answer']
 }
 export const getContractInfo = async (contract) => {
-    console.log(contract)
     let promise =  await instance.get(`Tickets/FillByContract?number=${contract}`).catch(err=>console.log(err))
     return promise.data['Answer']
 }
@@ -98,4 +97,25 @@ export const getReport = async (start,finish,variant) => {
 export const getJobHistory = async(orderNumber) => {
     let promise = await instance.get(`/job/history?number=${orderNumber}`)
     return promise.data['Answer']
+}
+export const getEquipmentList = async() => {
+    let promise = await instance.get(`trade/getEquipmentByOrders`)
+    let equipmentList =  promise.data['Answer']
+    let activeEquipment = equipmentList.filter(equipment=>{
+        return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
+    }).map(equipment=>{
+        return {
+            'Заявка':equipment['Заявка'],
+            'СерийныйНомер':equipment['СерийныйНомер'],
+            Presentation:equipment['Номенклатура'].Presentation
+        }
+    })
+    let groupBy = function(xs, key) {
+        return xs.reduce(function(rv, x) {
+            (rv[x[key]] = rv[x[key]] || []).push(x);
+            return rv;
+        }, {});
+    };
+   return groupBy(activeEquipment,'Presentation')
+
 }

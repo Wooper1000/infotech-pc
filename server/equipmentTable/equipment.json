@@ -1,0 +1,46 @@
+{
+  "1b5a6620-689f-4f94-891c-0f7ce493c3b8": {
+  "Presentation": "МТС Маршрутизатор Wi-Fi  D-Link DIR-842 1xWAN 4xLAN; 2,4 + 5 ГГц",
+  "uid":"1b5a6620-689f-4f94-891c-0f7ce493c3b8"
+},
+  "0184f913-6e84-4e52-a683-6bfd6891b02b": {
+  "Presentation": "Терминал абонентский Huawei HG8010H GPON, 1x1GE RJ-45 (Class B+)",
+  "uid":"0184f913-6e84-4e52-a683-6bfd6891b02b"
+},
+  "b27716ca-daf3-4ea2-8c98-3bf3d8ac02fd": {
+  "Presentation": "Маршрутизатор Wi-Fi TP-LINK Archer C5 1xWAN 4xLAN 1xUSB; 2,4 + 5 ГГц",
+  "uid":"b27716ca-daf3-4ea2-8c98-3bf3d8ac02fd"
+},
+  "0104c112-5814-4ed6-a0b5-5c8d7613166b": {
+  "Presentation": "Маршрутизатор Wi-Fi D-link DIR-806A 1xWAN 4xLAN",
+  "uid":"0104c112-5814-4ed6-a0b5-5c8d7613166b"
+},
+  "30b9c58a-6e24-47da-b223-715b5256b2d0": {
+  "Presentation": "Маршрутизатор Wi-Fi TP-LINK Archer C20 1xWAN 4xLAN; 2,4 + 5 ГГц",
+  "uid":"30b9c58a-6e24-47da-b223-715b5256b2d0"
+},
+  "6e5e0a77-bafd-460b-b5ab-efef016beb84": {
+  "Presentation": "Маршрутизатор Wi-Fi TP-LINK EC225-G5 1xWAN 3xLAN 2,4 + 5 ГГц",
+  "uid":"6e5e0a77-bafd-460b-b5ab-efef016beb84"
+},
+  "b92e4bb6-4e68-4f9e-a57e-031490ab42b6": {
+  "Presentation": "МТС Б/У Маршрутизатор Wi-Fi  D-Link DIR-842S 1xWAN 4xLAN; 2,4 + 5 ГГц",
+  "uid":"b92e4bb6-4e68-4f9e-a57e-031490ab42b6"
+},
+  "cb22d621-5b0c-11e7-8776-003048c6b4ab": {
+  "Presentation": "Коммутатор TP-LINK TL-SG1005D, 5 портов Gigabit",
+  "uid":"cb22d621-5b0c-11e7-8776-003048c6b4ab"
+},
+  "8aa7eee1-87a5-4f5c-9d56-4d6f90cbb367": {
+  "Presentation": "Шлюз VoIP TAU-2M.IP 2xFXS, 1xWAN, 1xLAN, 1xUSB, SIP",
+  "uid":"8aa7eee1-87a5-4f5c-9d56-4d6f90cbb367"
+},
+  "ed46fdbe-d609-4e64-804c-e48808297c8e": {
+  "Presentation": "МТС Приставка телевизионная цифровая DV8235",
+  "uid":"ed46fdbe-d609-4e64-804c-e48808297c8e"
+},
+  "8c9e911c-6ad3-4364-b23a-ef7b70dee83d": {
+  "Presentation": "Приставка телевизионная цифровая  TVIP S-Box v.710",
+  "uid":"8c9e911c-6ad3-4364-b23a-ef7b70dee83d"
+}
+}

@@ -45,6 +45,9 @@ export const store = createStore({
         setSalary(state, value) {
             state.salary = value
         },
+        setEquipment(state,value){
+            state.equipment = value
+        }
     },
     getters: {
         ordersSortedByDays : (state) => (status)=> {

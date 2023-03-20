@@ -37,10 +37,13 @@ export default {
         let ordersToUpdate = this.$store.state.statusFilters.filters.inactive.orders.concat(activeOrdersWithTickets)
       this.$store.commit('setOrders', ordersToUpdate)
       let thisMonthSalaryPromise = await fetch(config.serverURL+'/get-report')
+      let equipmentListPromise = await fetch(config.serverURL+'/get-equipment-list')
+      let equipmentList = await equipmentListPromise.json()
       let currentMonthSalary  = await thisMonthSalaryPromise.json()
       let prevMonthSalaryPromise = await fetch(config.serverURL+'/get-report?variant=Предыдущиймесяц')
       let prevMonthSalary  = await prevMonthSalaryPromise.json()
       this.$store.commit('setSalary',{currentMonthSalary,prevMonthSalary})
+      this.$store.commit('setEquipment',equipmentList)
       this.$store.commit('isLoading',false)
     },
   }

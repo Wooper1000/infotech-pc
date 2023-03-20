@@ -15,7 +15,7 @@ import WorkDayApp from "@/components/Work-Day-App.vue";
 
 export default {
   name: "Orders-List-App.vue",
-  components: {
+  components:  {
     WorkDayApp
   },
   data() {

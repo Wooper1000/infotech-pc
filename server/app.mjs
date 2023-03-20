@@ -12,11 +12,10 @@ import {
     getContractInfo,
     getReport,
     getJobHistory,
-    test
+    test, getEquipmentList
 } from "./infotech-requests/requests.mjs";
 
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
-
 
 
 
@@ -32,12 +31,14 @@ app.use(bodyParser.json(
         , limit: '50mb'
     }));
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => console.log('App is listening on port ', PORT))
-
+let start = null
 app.get('/get-order-list', async (req, res) => {
-    res.json(await getJobList())
+    start = new Date().getTime()
+    let orders = await getJobList()
+    res.json(orders)
 })
 app.post('/get-additional-orders-info', async (req, res) => {
     let orders = req.body
@@ -50,6 +51,7 @@ app.post('/get-additional-orders-info', async (req, res) => {
         }
         return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
     }))
+    console.log('Заняло ',(new Date().getTime() - start) /1000)
     res.json(ordersWithTicketsAndConfigurations)
 })
 app.get('/make-call', async (req, res) => {
@@ -57,6 +59,7 @@ app.get('/make-call', async (req, res) => {
     res.send(promise)
 })
 app.get('/get-contracts-in-range-of-flats', async (req, res) => {
+    const start = new Date().getTime()
     let min = req.query.min
     let max = req.query.max
     let physUid = req.query.uid
@@ -102,20 +105,25 @@ app.get('/get-contracts-in-range-of-flats', async (req, res) => {
             })
         }).catch(err => console.log(`Ошибочка вышла во время запроса квартиры ${flat}`))
     }
+
+
+
+
     let promises = []
     flatsRange.forEach(flat => {
         promises.push(findClosedContracts(flat, uid))
     })
     Promise.all(promises).then(resolves => {
-        res.json(resolves)
+    res.json(resolves)
     })
+
 })
 app.get('/get-test-ip', async (req, res) => {
 })
 app.post('/upload-photo', upload.array('files', 10), async (req, res) => {
-
+    console.log('Зашёл в обработчик фото')
     let result = await PhotoUploader.uploadPhotos(req.files, req.query.uid)
-    console.log(result)
+    res.json(result)
 })
 app.get('/get-report', async (req, res) => {
     let report = await getReport(req.query.start,req.query.finish,req.query.variant)
@@ -127,7 +135,32 @@ app.get('/get-job-history', async (req, res) => {
     let history = await getJobHistory(req.query['order-number'])
     res.send(history)
 })
-app.get('/test', async (req, res) => {
-    let data = await test(req.query['option'])
-    res.send(data)
+app.get('/get-equipment-list', async (req, res) => {
+    let equipment = await getEquipmentList()
+    res.send(equipment)
 })
+
+
+
+app.get('/test', async (req, res) => {
+    console.log('Получили запрос на получение заявок')
+   setTimeout(()=> {
+       console.log('отдаём заявки')
+       res.json('Выполнили запрос заявок')
+   },10000)
+})
+    app.get('/test2', async (req, res) => {
+        console.log('получили запрос на обработку заявок')
+        setTimeout(()=> {
+            console.log('Выполнили обработку заявок')
+            res.json('Выполнили обработку заявок')
+        },100)
+})
+    app.get('/test3', async (req, res) => {
+        console.log('получили запрос на зарплату')
+        setTimeout(()=> {
+            console.log('Выполнили запрос зарплаты')
+            res.json('Выполнили запрос зарплаты')
+        },4000)
+})
+

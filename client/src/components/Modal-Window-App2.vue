@@ -1,11 +1,10 @@
 <template>
   <div class="dialog"
-       tabindex="0"
-       v-if="show"
+       @keydown.esc="hideDialog"
   >
     <div class="content-container" >
       <MyButtonApp class="close-button"  @click.stop="hideDialog" value="X"/>
-      <div class="content" @keydown.esc="hideDialog">
+      <div class="content" >
       <slot>
       </slot>
       </div>
@@ -16,15 +15,9 @@
 <script>
 import MyButtonApp from "@/components/My-Button-App";
 
+
 export default {
   name: "Modal-Window-App.vue",
-  props: {
-    show: {
-      type: Boolean,
-      default: false
-    },
-  },
-
 
   methods:{
     hideDialog(){
@@ -32,7 +25,7 @@ export default {
     }
   },
   components:{
-    MyButtonApp
+    MyButtonApp,
   }
 }
 </script>
@@ -48,6 +41,7 @@ export default {
   display: flex;
   max-height: 1000px;
   overflow: auto;
+  z-index: 99;
 
 }
 

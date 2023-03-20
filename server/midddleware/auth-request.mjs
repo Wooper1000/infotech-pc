@@ -7,14 +7,14 @@ const instance = axios.create({
         "Accept-Encoding": "gzip, deflate, br",
         "Content-Type": "application/octet-stream",
         MobAppName: "0JjQvdGE0L7QotC10YUNCg==",
-        MobAppVersion: "0.3.82",
+        MobAppVersion: "0.3.89",
         'User-Agent': '1C+Enterprise/8.3',
         Host: 'ext.obit.ru',
         Connection: 'keep-alive',
     }
 })
 instance.interceptors.response.use((response) => {
-    console.log('Получилось с существующей сессией')
+    // console.log('Получилось с существующей сессией')
     return response
 }, async function (error) {
     const originalRequest = error.config;
@@ -24,7 +24,7 @@ instance.interceptors.response.use((response) => {
             }
         return await axios(originalRequest)
         .then(result=>{
-            console.log('Используем полученную куку',originalRequest.headers.Cookie);
+            // console.log('Используем полученную куку',originalRequest.headers.Cookie);
             return result})
         .catch(async err=> {
             originalRequest.headers['Cookie']=null
@@ -34,7 +34,7 @@ instance.interceptors.response.use((response) => {
                 .then(result=>{
                 let cookie = result.headers?.['set-cookie'][0].split(';')[0]
                 instance.defaults.headers.common['Cookie'] = cookie
-                console.log('Получили новый КУКИ ',cookie);
+                // console.log('Получили новый КУКИ ',cookie);
                 fs.writeFileSync(ibSessionPath, cookie)
                     return axios(originalRequest)
             }).catch(err=>console.log(err.response.data))
