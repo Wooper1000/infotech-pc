@@ -31,7 +31,7 @@ app.use(bodyParser.json(
         , limit: '50mb'
     }));
 
-const PORT = 3001
+const PORT = 3000
 
 app.listen(PORT, () => console.log('App is listening on port ', PORT))
 let start = null
