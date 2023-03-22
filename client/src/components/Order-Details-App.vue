@@ -4,8 +4,8 @@
     <div class="client-name">
       {{order['Контрагент']}}
     </div>
-    <div class="telephone">
-      <div class="client-telephone"><a :href="'tel:'+primaryTelephone(order)">{{primaryTelephone(order)}}</a></div>
+    <div v-for="tel in primaryTelephones" :key="tel" class="telephone">
+      <div class="client-telephone"><a :href="'tel:'+tel?.['Телефон']">{{tel?.['Телефон']}}</a></div>
       <div class="call-icon" @click="toggleAcceptToCallDialog(true)"><img  src="../assets/icons/telephone-call.png" alt="telephone"></div>
     </div>
   </div>
@@ -34,7 +34,7 @@
   <OrderFeaturesApp :order="order"/>
   </div>
   <ModalWindowApp v-model:show="acceptToCallDialogVisibility">
-    <h2>Звоним {{ primaryTelephone(order) }} ?</h2>
+    <h2>Звоним {{}}} ?</h2>
     <div class="accept-to-call">
       <MyButtonApp @click="makeCall" value="Да"/>
       <MyButtonApp @click="toggleAcceptToCallDialog(false)" value="Я передумал"/>
@@ -55,7 +55,8 @@ export default {
   },
   data(){
     return{
-      acceptToCallDialogVisibility:false
+      acceptToCallDialogVisibility:false,
+      primaryTelephones:[]
     }
   },
   components:{
@@ -75,7 +76,7 @@ export default {
       this.acceptToCallDialogVisibility = value
     },
     primaryTelephone(order){
-      return order['КонтактныеДанные'].find(tel=>tel['Ключ']==="PRIMARY")?.['Телефон']
+      this.primaryTelephones = order['КонтактныеДанные'].filter(tel=>tel['Ключ']==="PRIMARY")
     }
   }
 }
