@@ -1,3 +1,4 @@
+
 import instance from "../midddleware/auth-request.mjs";
 import dateFormat from "dateformat";
 import equipmentSchedule from "../equipmentTable/equipment.json" assert { type: "json" };
@@ -20,7 +21,43 @@ let response = await instance.get(`/call/ticket?Key=${key}`)
     console.log('Звоним ',key)
     return response.data
 }
+export const getPortsListByObit = async (obit)=>{
+    try {
+        let response = await instance.get(`/netobject/get_sw_ports?obitnumber=OBIT-${obit}`)
+        return response.data['Answer']
+    }
+    catch (err){
+        console.log(err)
+        return err
+    }
+}
+export const getPortsListWithDescriptionByObit = async (obit)=>{
+    try {
+        let response = await instance.get(`netobject/telem_srv?act=get_sw_report&obitnumber=OBIT-${obit}`)
+        return response.data['Answer']
+    }
+    catch (err){
+        console.log(err)
+        return err
+    }
+}
+export const getCabdiagByObitAndPort = (obit,port)=>{
+    // try {
+    //     let response = await instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
+    //     console.log(response.data['Answer'])
+    //     return response.data['Answer']
+    // }
+    // catch (err){
+    //     console.log(err)
+    //     return err
+    // }
+
+        return  instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
+
+
+}
 export const getAddressUid = async (uid)=>{
+    console.log(uid)
     let promise = await instance.post(`/addresses/getbyphaddress?full&uid=${uid}`).catch(err=>console.log('Ошибка получения UID',uid))
     return {
         uid: promise.data['Список'][0]['Ссылка'],
@@ -31,6 +68,21 @@ export const getAddressUid = async (uid)=>{
     }
 }
 export const getContractsByAddress = async (uid,flat)=>{
+    let address2 =
+        {
+            "Договор": "",
+            "АдресАрендодателя": {
+                "uid": "762be4c2-c3aa-11e3-bb89-003048c6b4ab",
+                "Code": "",
+                "Name": "Народного Ополчения пр-кт, 10, лит. А"
+            },
+            "АдресУлица": "Народного Ополчения пр-кт",
+            "АдресДом": "10",
+            "АдресЛитера": "А",
+            "АдресКорпус": "",
+            "АдресКвартира": flat.toString()
+        }
+
     let address = {
         "Договор": "",
         "АдресАрендодателя": {

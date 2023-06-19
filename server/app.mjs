@@ -12,10 +12,11 @@ import {
     getContractInfo,
     getReport,
     getJobHistory,
-    test, getEquipmentList
+    test, getEquipmentList, getPortsListByObit, getCabdiagByObitAndPort, getPortsListWithDescriptionByObit
 } from "./infotech-requests/requests.mjs";
 
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
+
 
 
 
@@ -58,6 +59,44 @@ app.get('/make-call', async (req, res) => {
     let promise = await makeCall(req.query.key)
     res.send(promise)
 })
+app.get('/get-ports', async (req, res) => {
+    let obit = req.query.obit;
+    let ports = await getPortsListWithDescriptionByObit(obit);
+    ports = JSON.parse(ports);
+    let cabDiagArr = [];
+
+    Object.keys(ports).forEach(port => {
+        if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
+            cabDiagArr.push({
+                port: {
+                    status: ports[port].status,
+                    description: ports[port].description,
+                    contract: ports[port].contract,
+                    obithome: ports[port].obithome,
+                    portNumber:port
+                },
+                diag: getCabdiagByObitAndPort(obit, port)
+            });
+
+        }
+    });
+
+    cabDiagArr.forEach((promise) => {
+        promise.diag.then(resolve => {
+            const responseData = {
+                data: resolve.data['Answer'],
+                port: promise.port
+            };
+            const serializedData = JSON.stringify(responseData);
+            res.write(serializedData); // Отправляем данные на фронт
+        });
+    });
+
+    const promises = cabDiagArr.map(promise => promise.diag);
+    Promise.all(promises).then(() => {
+        res.end(); // Завершаем ответ после разрешения всех промисов
+    });
+});
 app.get('/get-contracts-in-range-of-flats', async (req, res) => {
     const start = new Date().getTime()
     let min = req.query.min

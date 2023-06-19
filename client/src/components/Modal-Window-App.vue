@@ -46,11 +46,17 @@ export default {
   left: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  max-height: 1000px;
-  overflow: auto;
+  justify-content: center;
+  align-items: center;
 
 }
-
+.content{
+  max-height: 80vh; /* Максимальная высота модального окна */
+  overflow-y: auto; /* Появление прокрутки при превышении контента */
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
 .content-container{
   margin: auto;
   background: white;
