@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import multer from 'multer'
+import PORT from './config/config.json'
 import {
     getAddressUid,
     getContractsByAddress,
@@ -32,7 +33,7 @@ app.use(bodyParser.json(
         , limit: '50mb'
     }));
 
-const PORT = 3000
+
 
 app.listen(PORT, () => console.log('App is listening on port ', PORT))
 let start = null
