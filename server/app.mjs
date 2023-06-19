@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import multer from 'multer'
-import PORT from './config/config.json'
+import config from './config/config.json' assert { type: "json" }
 import {
     getAddressUid,
     getContractsByAddress,
@@ -20,7 +20,7 @@ import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
 
 
 
-
+const PORT = config.PORT
 
 const app = express()
 const upload = multer({
