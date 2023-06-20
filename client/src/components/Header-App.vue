@@ -78,7 +78,6 @@ export default {
 
   methods: {
     async getPorts() {
-
       const inputs = document.querySelectorAll('input');
       inputs.forEach((input) => {
         input.blur();
