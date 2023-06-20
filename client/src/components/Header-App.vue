@@ -6,23 +6,35 @@
     <img @click="menuVisibility=true" class="menu-icon" src="../assets/icons/menu-button-of-three-horizontal-lines.png"
          alt="menu">
   </div>
-  <ModalWindowApp v-model:show=menuVisibility @close="menuVisibility=!menuVisibility">
-    <FiltersListApp v-model:show='menuVisibility'/>
-    <input style="align-content: center" autofocus @keydown.enter="getPorts" v-model="switchObit" type="text" inputmode="numeric"
-           placeholder="OBIT номер свитча">
-    <MyButtonApp value="Проверить"  @click="getPorts"/>
-      <div v-for="port in ports" :key="port" style="max-width: 500px" ref="itemRefs">
-<hr>
-         
-          <div v-if="port.port.status"><b
-              :style="{color:port.port.status==='DOWN'?'black':'red'}"><div style='text-align:center'>Порт {{ port.port.portNumber }}</div> Статус:</b>
-            {{ port.port.status }}
-          </div>
-          <div v-if="port.port.description"><b style="color: red">Описание: </b>{{ port.port.description }}</div>
-          <div v-if="port.port.obithome"><b style="color: red">Клиент: </b>{{ port.port.obithome }}</div>
- <pre>{{ port.data }}</pre>
-          <hr>
+  <ModalWindowApp v-model:show="menuVisibility" @close="menuVisibility=!menuVisibility">
+    <FiltersListApp v-model:show="menuVisibility"/>
+    <div class="input-wrapper">
+      <input
+          autofocus
+          @keydown.enter="getPorts"
+          v-model="switchObit"
+          type="text"
+          inputmode="text"
+          placeholder="OBIT номер свитча"
+      >
+    </div>
+    <MyButtonApp value="Проверить" @click="getPorts"/>
+
+    <div v-for="port in ports" :key="port" style="max-width: 500px" ref="portsRefs">
+      <hr>
+
+      <div v-if="port.port.status"><b
+          :style="{color:port.port.status==='DOWN'?'black':'red'}">
+        <div style='text-align:center'>Порт {{ port.port.portNumber }}</div>
+        Статус:</b>
+        {{ port.port.status }}
       </div>
+      <div v-if="port.port.description"><b style="color: red">Описание: </b>{{ port.port.description }}</div>
+      <div v-if="port.port.obithome"><b style="color: red">Клиент: </b>{{ port.port.obithome }}</div>
+      <pre>{{ port.data }}</pre>
+      <hr>
+    </div>
+    <PreloaderApp :isLoading="loading"/>
   </ModalWindowApp>
 </template>
 
@@ -33,10 +45,13 @@ import FiltersListApp from "@/components/Filters-List-App";
 import getPorts from "@/components/getPorts";
 import {ref} from "vue";
 import MyButtonApp from "@/components/My-Button-App";
+import PreloaderApp from "@/components/Preloader-App";
+
 
 export default {
   name: 'Header-App',
   components: {
+    PreloaderApp,
     ModalWindowApp,
     FiltersListApp,
     MyButtonApp
@@ -48,7 +63,8 @@ export default {
       portsListVisibility: false,
       ports: ref([]),
       switchObit: null,
-      itemRefs : ref([])
+      itemRefs: ref([]),
+      loading:false
     }
   },
   computed: {
@@ -61,21 +77,31 @@ export default {
   },
 
   methods: {
+    async getPorts() {
 
-    getPorts() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach((input) => {
+        input.blur();
+      });
       if (this.switchObit) {
+        this.loading = true;
         this.ports = [];
-         getPorts(this.switchObit, data => {
+        await getPorts(this.switchObit, async (data) => {
           this.ports.push(JSON.parse(data));
-           this.$refs?.itemRefs?.[this.$refs?.itemRefs?.length-1]?.scrollIntoView()
+          await this.$nextTick(); // Ожидаем обновления DOM
+          const portsContainer = this.$refs.portsRefs;
+          const lastFlatElement = portsContainer[portsContainer.length - 1];
+          lastFlatElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
         });
+        this.loading=false
       }
+
     }
   }
 }
 
 </script>
-<style>
+<style scoped>
 .container {
   align-items: center;
   display: flex;
@@ -101,11 +127,23 @@ export default {
   position: relative;
   top: 1px;
   right: 10px;
-
 }
 
 .salary {
   display: inline-block;
   margin: auto;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: 16px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 </style>

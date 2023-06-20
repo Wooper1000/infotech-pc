@@ -1,40 +1,45 @@
 <template>
-  <div class="dialog"
-       tabindex="0"
-       v-if="show"
-  >
-    <div class="content-container" >
-      <MyButtonApp class="close-button"  @click.stop="hideDialog" value="X"/>
-      <div class="content" @keydown.esc="hideDialog">
-      <slot>
-      </slot>
+  <div class="dialog" tabindex="0" v-if="show" ref="dialog">
+    <div class="content-container">
+      <div class="close-button-container">
+        <MyButtonApp class="close-button" @click.stop="hideDialog" value="X" />
+      </div>
+      <div class="content" ref="content" @keydown.esc="hideDialog">
+        <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MyButtonApp from "@/components/My-Button-App";
+import { ref } from 'vue';
+import MyButtonApp from "@/components/My-Button-App.vue";
 
 export default {
-  name: "Modal-Window-App.vue",
+  name: "ModalWindowApp",
   props: {
     show: {
       type: Boolean,
       default: false
-    },
-  },
-
-
-  methods:{
-    hideDialog(){
-      this.$emit('close')
     }
   },
-  components:{
+  components: {
     MyButtonApp
+  },
+  setup(props, { emit }) {
+    const dialogRef = ref(null);
+    const contentRef = ref(null);
+
+    const hideDialog = () => {
+      emit('close');
+    };
+    return {
+      dialogRef,
+      contentRef,
+      hideDialog
+    };
   }
-}
+};
 </script>
 
 <style scoped>
@@ -48,26 +53,30 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-.content{
-  max-height: 80vh; /* Максимальная высота модального окна */
-  overflow-y: auto; /* Появление прокрутки при превышении контента */
+
+.content {
+  max-height: 80vh;
+  overflow-y: auto;
   background-color: white;
-  padding: 20px;
+  padding: 5px;
   border-radius: 5px;
 }
-.content-container{
+
+.content-container {
   margin: auto;
   background: white;
   border-radius: 12px;
-  padding: 10px;
   min-height: 50px;
   min-width: 300px;
 }
-.close-button{
-  display: block;
-  float: right;
+
+.close-button-container {
+  text-align: right;
+}
+
+.close-button {
+  display: inline-block;
   margin: 5px 2px;
   font-size: 16px;
 }

@@ -37,7 +37,7 @@ instance.interceptors.response.use((response) => {
                 // console.log('Получили новый КУКИ ',cookie);
                 fs.writeFileSync(ibSessionPath, cookie)
                     return axios(originalRequest)
-            }).catch(err=>console.log(err.response.data))
+            }).catch(err=>console.log(err))
         })
 })
 export default instance

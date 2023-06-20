@@ -1,7 +1,7 @@
 <template>
   <div class="order-features-container">
     <div class="closed-contracts-icon">
-      <img class="feature-icon" @click="showClosedContracts2=true" src="../assets/icons/closed-contracts.png"
+      <img class="feature-icon" @click="showClosedContracts=true" src="../assets/icons/closed-contracts.png"
            alt="closed-contracts">
       <img class="feature-icon" @click="showIpConfigurations(!ipConfigurationsVisibility)"
            src="../assets/icons/free-icon-ip-1674968.png" alt="ip-configurations">
@@ -10,9 +10,9 @@
     </div>
   </div>
 
-    <ModalWindowApp2 v-if="showClosedContracts2" @close="showClosedContracts2=false">
+    <ModalWindowApp :show="showClosedContracts" @close="showClosedContracts=false">
       <ClosedContractsApp :uid='addressUid'/>
-    </ModalWindowApp2>
+    </ModalWindowApp>
 
 
 
@@ -28,7 +28,6 @@ import ClosedContractsApp from "@/components/Closed-Contracts-App";
 import IPConfigurationsApp from "@/components/IP-Configurations-App";
 import UploadPhotoApp from "@/components/Upload-Photo-App";
 import ModalWindowApp from "@/components/Modal-Window-App";
-import ModalWindowApp2 from "@/components/Modal-Window-App2";
 import {ref} from "vue";
 
 export default {
@@ -38,7 +37,6 @@ export default {
     ClosedContractsApp,
     IPConfigurationsApp,
     UploadPhotoApp,
-    ModalWindowApp2
   },
   props: {
     order: {
