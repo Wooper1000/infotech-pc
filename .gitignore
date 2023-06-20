@@ -1,4 +1,3 @@
 node_modules/
 client/src/config/
-server/config/ibSession
-server/config/config.json
+server/config
