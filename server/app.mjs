@@ -38,7 +38,6 @@ app.use(bodyParser.json(
 app.listen(PORT, () => console.log('App is listening on port ', PORT))
 let start = null
 app.get('/get-order-list', async (req, res) => {
-
     start = new Date().getTime()
     let orders = await getJobList()
     res.json(orders)

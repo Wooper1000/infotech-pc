@@ -79,7 +79,6 @@ this.flats= []
         this.isLoading = false;
         return;
       }
-
       const reader = response.body.getReader();
       let receivedData = '';
 
