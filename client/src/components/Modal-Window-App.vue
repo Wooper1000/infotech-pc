@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog" tabindex="0" v-if="show" ref="dialog">
+  <div class="dialog" tabindex="0" v-if="show">
     <div class="content-container">
       <div class="close-button-container">
         <MyButtonApp class="close-button" @click.stop="hideDialog" value="X" />
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import MyButtonApp from "@/components/My-Button-App.vue";
 
 export default {
@@ -26,18 +25,10 @@ export default {
   components: {
     MyButtonApp
   },
-  setup(props, { emit }) {
-    const dialogRef = ref(null);
-    const contentRef = ref(null);
-
-    const hideDialog = () => {
-      emit('close');
-    };
-    return {
-      dialogRef,
-      contentRef,
-      hideDialog
-    };
+  methods: {
+    hideDialog() {
+      this.$emit('close');
+    }
   }
 };
 </script>

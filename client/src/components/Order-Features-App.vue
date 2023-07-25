@@ -18,8 +18,8 @@
 
   <IPConfigurationsApp v-if="ipConfigurationsVisibility" :order="order"/>
 
-  <ModalWindowApp :show="uploadPhotoModalVisibility" @close="uploadPhotoModalVisibility=!uploadPhotoModalVisibility">
-    <UploadPhotoApp :uid='ticketUid'/>
+  <ModalWindowApp :show="uploadPhotoModalVisibility" >
+    <UploadPhotoApp :uid='ticketUid' @close="uploadPhotoModalVisibility=false"/>
   </ModalWindowApp>
 </template>
 <script>

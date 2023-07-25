@@ -4,9 +4,9 @@
     <div class="client-name">
       {{order['Контрагент']}}
     </div>
-    <div v-for="tel in primaryTelephones" :key="tel" class="telephone">
+    <div v-for="(tel,idx) in primaryTelephone" :key="tel" class="telephone">
       <div class="client-telephone"><a :href="'tel:'+tel?.['Телефон']">{{tel?.['Телефон']}}</a></div>
-      <div class="call-icon" @click="toggleAcceptToCallDialog(true)"><img  src="../assets/icons/telephone-call.png" alt="telephone"></div>
+      <div class="call-icon" @click="toggleAcceptToCallDialog(true,idx)"><img  src="../assets/icons/telephone-call.png" alt="telephone"></div>
     </div>
   </div>
     <div class="creator-and-type-of-work">
@@ -33,12 +33,12 @@
     </div>
   <OrderFeaturesApp :order="order"/>
   </div>
-  <ModalWindowApp v-model:show="acceptToCallDialogVisibility">
-    <h2>Звоним {{}}} ?</h2>
-    <div class="accept-to-call">
-      <MyButtonApp @click="makeCall" value="Да"/>
-      <MyButtonApp @click="toggleAcceptToCallDialog(false)" value="Я передумал"/>
-    </div>
+    <ModalWindowApp :show="acceptToCallDialogVisibility" @close="acceptToCallDialogVisibility = false">
+      <p>Звоним <strong>{{ order['Контрагент'] }}</strong> ?<br></p>
+      <div class="accept-to-call">
+        <MyButtonApp @click="makeCall" value="Да" />
+        <MyButtonApp @click="toggleAcceptToCallDialog(false)" value="Я передумал" />
+      </div>
     </ModalWindowApp>
 </template>
 
@@ -56,7 +56,7 @@ export default {
   data(){
     return{
       acceptToCallDialogVisibility:false,
-      primaryTelephones:[]
+      indexPhoneToCall:null
     }
   },
   components:{
@@ -66,17 +66,20 @@ export default {
   },
   methods:{
     async makeCall(){
-      let promise = await fetch(config.serverURL+'/make-call?key='+(+(this.order['Номер'].slice(4) + "01")).toString())
-      this.toggleAcceptToCallDialog(false)
-      let response = await promise.json()
-      console.log(response)
-        return response
+       let promise =await fetch(config.serverURL+'/make-call?key='+(+(this.order['Номер'].slice(4)+"0"+this.indexPhoneToCall)).toString())
+       this.toggleAcceptToCallDialog(false)
+       let response = await promise.json()
+       console.log(response)
+         return response
     },
-    toggleAcceptToCallDialog(value){
+    toggleAcceptToCallDialog(value,idx=null){
+      this.indexPhoneToCall = idx+1
       this.acceptToCallDialogVisibility = value
     },
-    primaryTelephone(order){
-      this.primaryTelephones = order['КонтактныеДанные'].filter(tel=>tel['Ключ']==="PRIMARY")
+  },
+  computed:{
+    primaryTelephone(){
+     return this.order['КонтактныеДанные'].filter(tel=>tel['Ключ']==="PRIMARY")
     }
   }
 }

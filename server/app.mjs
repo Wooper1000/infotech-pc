@@ -182,6 +182,7 @@ app.get('/get-contracts-in-range-of-flats', async (req, res) => {
 });
 app.get('/get-test-ip', async (req, res) => {
 })
+
 app.post('/upload-photo', upload.array('files', 10), async (req, res) => {
     console.log('Зашёл в обработчик фото')
     let result = await PhotoUploader.uploadPhotos(req.files, req.query.uid)
