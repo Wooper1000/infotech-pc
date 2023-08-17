@@ -12,41 +12,66 @@ export default {
   },
   methods: {
     async fetchOrders() {
+      this.$store.commit('isLoading', true);
 
-      //Тестовый запрос
+      // Запускаем параллельные запросы на получение заявок, оборудования и зарплат
+      let ordersPromise = fetch(config.serverURL + '/get-order-list');
+      let equipmentListPromise = fetch(config.serverURL + '/get-equipment-list');
+      let currentMonthSalaryPromise = fetch(config.serverURL + '/get-report');
+      let prevMonthSalaryPromise = fetch(config.serverURL + '/get-report?variant=Предыдущиймесяц');
 
-      // fetch(config.serverURL+'/test').then(data=>data.json().then(data=>console.log(
-      //     data.filter(el=>{
-      //       console.log(el['Наименование'])
-      //   el['Код']='396412'
-      // }))))
+      // Обрабатываем результаты
+      ordersPromise.then(async res => {
+        let orders = await res.json();
+        this.orders = orders;
+        this.$store.commit('setOrders', orders);
 
-      //Тестовый запрос
+        // Только после получения списка заявок, отправляем запрос на получение дополнительной информации
+        let additionalOrdersInfo = await fetch(config.serverURL + '/get-additional-orders-info', {
+          method: 'post',
+          body: JSON.stringify(this.$store.state.statusFilters.filters.active.orders),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(res => res.json());
 
+        let activeOrdersWithTickets = additionalOrdersInfo;
+        let ordersToUpdate = this.$store.state.statusFilters.filters.inactive.orders.concat(activeOrdersWithTickets);
+        this.$store.commit('setOrders', ordersToUpdate);
+      });
 
-      this.$store.commit('isLoading', true)
-      let promise = await fetch(config.serverURL+'/get-order-list')
-      let orders = await promise.json()
-      this.orders = orders
-      this.$store.commit('setOrders', orders)
-      let activeOrders = this.$store.state.statusFilters.filters.active.orders
-      let response = await fetch(config.serverURL+'/get-additional-orders-info',{method:'post',body:JSON.stringify(activeOrders),headers:{
-          'content-type':'application/json'
-        }})
-       let activeOrdersWithTickets = await response.json()
-        let ordersToUpdate = this.$store.state.statusFilters.filters.inactive.orders.concat(activeOrdersWithTickets)
-      this.$store.commit('setOrders', ordersToUpdate)
-      let thisMonthSalaryPromise = await fetch(config.serverURL+'/get-report')
-      let equipmentListPromise = await fetch(config.serverURL+'/get-equipment-list')
-      let equipmentList = await equipmentListPromise.json()
-      let currentMonthSalary  = await thisMonthSalaryPromise.json()
-      let prevMonthSalaryPromise = await fetch(config.serverURL+'/get-report?variant=Предыдущиймесяц')
-      let prevMonthSalary  = await prevMonthSalaryPromise.json()
-      this.$store.commit('setSalary',{currentMonthSalary,prevMonthSalary})
-      this.$store.commit('setEquipment',equipmentList)
-      this.$store.commit('isLoading',false)
+      equipmentListPromise.then(async res => {
+        let equipmentList = await res.json();
+        this.$store.commit('setEquipment', equipmentList);
+      });
+
+      currentMonthSalaryPromise.then(async res => {
+        let currentMonthSalaryData = await res.json();
+        let currentSalaries = this.$store.state.salary;
+        this.$store.commit('setSalary', {
+          ...currentSalaries,
+          currentMonthSalary: currentMonthSalaryData
+        });
+      });
+
+      prevMonthSalaryPromise.then(async res => {
+        let prevMonthSalaryData = await res.json();
+        let currentSalaries = this.$store.state.salary;
+        this.$store.commit('setSalary', {
+          ...currentSalaries,
+          prevMonthSalary: prevMonthSalaryData
+        });
+      });
+
+      // После выполнения всех запросов устанавливаем флаг isLoading в false
+      Promise.all([ordersPromise, equipmentListPromise, currentMonthSalaryPromise, prevMonthSalaryPromise])
+          .then(() => {
+            this.$store.commit('isLoading', false);
+          });
     },
   }
+
+
 }
 </script>
 
