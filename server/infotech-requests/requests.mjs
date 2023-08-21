@@ -6,25 +6,25 @@ import equipmentSchedule from "../equipmentTable/equipment.json" assert { type: 
 
 export const test = async ()=>{
     let response = await instance.get(`Services/get?format=v2`)
-    return response.data['Answer']
+    return response?.data['Answer']
 }
 export const getJobList = async ()=>{
 let response = await instance.post(`joblist/get`)
-    return response.data['Answer']
+    return response?.data['Answer']
 }
 export const getTicket = async (order)=>{
 let response = await instance.get(`Tickets/get?number=${order}`)
-    return response.data['Answer']
+    return response?.data['Answer']
 }
 export const makeCall = async (key)=>{
 let response = await instance.get(`/call/ticket?Key=${key}`)
     console.log('Звоним ',key)
-    return response.data
+    return response?.data
 }
 export const getPortsListByObit = async (obit)=>{
     try {
         let response = await instance.get(`/netobject/get_sw_ports?obitnumber=OBIT-${obit}`)
-        return response.data['Answer']
+        return response?.data['Answer']
     }
     catch (err){
         console.log(err)
@@ -34,7 +34,7 @@ export const getPortsListByObit = async (obit)=>{
 export const getPortsListWithDescriptionByObit = async (obit)=>{
     try {
         let response = await instance.get(`netobject/telem_srv?act=get_sw_report&obitnumber=OBIT-${obit}`)
-        return response.data['Answer']
+        return response?.data['Answer']
     }
     catch (err){
         console.log(err)
@@ -60,11 +60,11 @@ export const getAddressUid = async (uid)=>{
     console.log(uid)
     let promise = await instance.post(`/addresses/getbyphaddress?full&uid=${uid}`).catch(err=>console.log('Ошибка получения UID',uid))
     return {
-        uid: promise.data['Список'][0]['Ссылка'],
-        name: promise.data['Список'][0]['Наименование'],
-        street: promise.data['Список'][0]['Улица'],
-        home: promise.data['Список'][0]['Дом'],
-        additionalInfo: promise.data['Список'][0]['ДопДанные'],
+        uid: promise?.data['Список'][0]['Ссылка'],
+        name: promise?.data['Список'][0]['Наименование'],
+        street: promise?.data['Список'][0]['Улица'],
+        home: promise?.data['Список'][0]['Дом'],
+        additionalInfo: promise?.data['Список'][0]['ДопДанные'],
     }
 }
 export const getContractsByAddress = async (uid,flat)=>{
@@ -110,7 +110,7 @@ export const getContractsByAddress = async (uid,flat)=>{
 export const getClientsByAddress = async (address) => {
     let promise = await instance.post(`/GetClientsByAddress/get`, address).catch(err=>{
         console.log(err)})
-    return promise.data['Answer']
+    return promise?.data['Answer']
 }
 export const getOrderIP = async (order) => {
     let promise =  await instance.get(`tickets/getsettings?number=${order}`)
@@ -118,11 +118,11 @@ export const getOrderIP = async (order) => {
 }
 export const getContractStatus = async (contracts) => {
     let promise =  await instance.post(`home/contractstatus`,{"contracts":contracts})
-    return promise.data['Answer']
+    return promise?.data['Answer']
 }
 export const getContractInfo = async (contract) => {
     let promise =  await instance.get(`Tickets/FillByContract?number=${contract}`).catch(err=>console.log(err))
-    return promise.data['Answer']
+    return promise?.data['Answer']
 }
 export const getReport = async (start,finish,variant) => {
     let startDate = dateFormat(start, "yyyy-mm-dd") + "T00:00:00"
@@ -148,11 +148,11 @@ export const getReport = async (start,finish,variant) => {
 }
 export const getJobHistory = async(orderNumber) => {
     let promise = await instance.get(`/job/history?number=${orderNumber}`)
-    return promise.data['Answer']
+    return promise?.data['Answer']
 }
 export const getEquipmentList = async() => {
     let promise = await instance.get(`trade/getEquipmentByOrders`)
-    let equipmentList =  promise.data['Answer']
+    let equipmentList =  promise?.data['Answer']
     let activeEquipment = equipmentList.filter(equipment=>{
         return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
     }).map(equipment=>{
