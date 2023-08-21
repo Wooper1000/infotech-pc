@@ -2,9 +2,9 @@
   <h2 class="date" @click="hideWorkDay">{{ new Date(exactDay.date).toLocaleDateString()}}</h2>
   <div v-if="workDayVisibility">
     <OrderApp
-        v-for="order in exactDay.orders"
+        v-for="(order,idx) in exactDay.orders"
         :key="order['Номер']"
-        :order="order"
+        :order="{...order,idx:idx}"
     />
   </div>
 </template>

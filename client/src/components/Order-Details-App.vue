@@ -19,17 +19,27 @@
     </div>
     <div class="description">
       <h3 class="description-header">Описание Работ</h3>
-      <div class="description-text">
+      <div class="description-text" >
+        <pre style="white-space: pre-wrap">
         {{order['ДополнительнаяИнформация']}}
+          </pre>
       </div>
     </div>
-    <div v-if=order.ticket class="description">
+    <div v-if=order.ticket class="description" >
       <h4 class="description-header">Услуги</h4>
-        <ol class="description-text" >
-          <li v-for="service in order.ticket['Services']" :key="service['УслугаИД']">
-            {{service['УслугаНаименование']}}
-          </li>
-        </ol>
+      <ol class="description-text">
+        <li v-for="service in services" :key="service['УслугаИД']" style="margin-top: 7px">
+          <!-- Разделяем строку по пробелам и обрабатываем каждое слово -->
+          <span v-for="(word, index) in service.split(' ')" :key="index" style="word-wrap:break-word ">
+      <!-- Если это первое слово, делаем его зеленым -->
+      <span v-if="index === 0" style="color: green;font-weight: bold;background-color: rgba(211,211,211,0.5)">{{word}}</span>
+            <!-- Иначе, просто выводим слово как есть -->
+      <span v-else>{{word}}</span>
+            <!-- Добавляем пробелы между словами, кроме последнего слова -->
+      <span v-if="index !== service.split(' ').length - 1">&nbsp;</span>
+    </span>
+        </li>
+      </ol>
     </div>
   <OrderFeaturesApp :order="order"/>
   </div>
@@ -80,6 +90,22 @@ export default {
   computed:{
     primaryTelephone(){
      return this.order['КонтактныеДанные'].filter(tel=>tel['Ключ']==="PRIMARY")
+    },
+    services(){
+      let services = []
+      this.order.ticket.Ticket.Services.forEach(service=>{
+        if(service['номерУслуги']>=services.length){
+          if(!services[service['номерУслуги']-1]){
+            services[service['номерУслуги']-1] = ''
+            return  services[service['номерУслуги']-1]+=service['ТорговоеПредложение']['Presentation']+` `
+          }
+          if(service['ДопЗначение']){
+            services[service['номерУслуги']-1]+=service['ДопЗначение']+' '
+          }
+          else services[service['номерУслуги']-1]+=service['Свойство']['Name']+` `
+        }
+      })
+      return services
     }
   }
 }
@@ -128,8 +154,6 @@ export default {
   margin: 5px auto;
 }
 .description-text{
-  text-align: center;
-  font-style: italic ;
-  margin: 5px auto;
+  margin: 5px 5px;
 }
 </style>

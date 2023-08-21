@@ -2,6 +2,7 @@
   <div class="order-container">
     <div class="order-header">
       <div class="visit-slot">
+        <span style="color: orangered">{{order.idx+1}}</span>
         <div class="visit-date">
           {{new Date(order['ПланДатаНачала']).toLocaleDateString()}}
         </div>
@@ -16,6 +17,8 @@
              :class="{ 'no-document': order['ТекущийСтатус']==='Не хватает документов' }" @click="showComments"
         >
           {{ order['ТекущийСтатус'] }}
+          <br>
+         <span :style = "order['ТорговаяМарка']['Name']==='МТС' ? 'color:red' : 'color:green;font-weight:bold'"> {{order['ТорговаяМарка']['Name'] === 'МТС' ? order['ТорговаяМарка']['Name'] +'💩':order['ТорговаяМарка']['Name']}}</span>
         </div>
         <div class="contract-number">
           {{ order['НомерДоговора'] }}
@@ -81,7 +84,6 @@ this.detailsVisibility = value
       let history = await api.getJobHistory(this.order['Номер'])
       this.orderHistory = history
       this.historyModalVisibility = true
-      console.log(history)
     }
   },
   computed:{
