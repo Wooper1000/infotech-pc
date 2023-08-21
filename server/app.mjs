@@ -67,7 +67,6 @@ app.get('/get-ports', async (req, res) => {
     for(let port in ports){
       if(!ports[port].hasOwnProperty('description') || port.includes('TenGigabit')) delete ports[port]
     }
-res.send(ports)
     let cabDiagArr = [];
 
     Object.keys(ports).forEach(port => {
