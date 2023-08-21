@@ -63,7 +63,11 @@ app.get('/make-call', async (req, res) => {
 app.get('/get-ports', async (req, res) => {
     let obit = req.query.obit;
     let ports = await getPortsListWithDescriptionByObit(obit);
-    ports = JSON.parse(ports);
+    ports = JSON.parse(ports)
+    for(let port in ports){
+      if(!ports[port].hasOwnProperty('description') || port.includes('TenGigabit')) delete ports[port]
+    }
+res.send(ports)
     let cabDiagArr = [];
 
     Object.keys(ports).forEach(port => {
