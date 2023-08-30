@@ -23,7 +23,7 @@
         <div class="contract-number">
           {{ order['НомерДоговора'] }}
           <br>
-          {{order['Номер'].replace(/^0+/, '')}}
+          <span @click="openBarcode">{{order['Номер'].replace(/^0+/, '')}}</span>
         </div>
       </div>
     </div>
@@ -49,7 +49,10 @@
         {{note['Комментарий']}}
       </li>
     </ol>
-
+  </ModalWindowApp>
+  <ModalWindowApp :show="showBarcodeModal" @close="showBarcodeModal=false">
+    <img :src="barcodeData" alt="Barcode"/>
+    <MyButtonApp @click="showBarcodeModal=false" value="Закрыть"/>
   </ModalWindowApp>
 </template>
 
@@ -57,6 +60,7 @@
 import OrderDetailsApp from "@/components/Order-Details-App";
 import MyButtonApp from "@/components/My-Button-App";
 import {api} from "@/api";
+import JsBarcode from 'jsbarcode'
 
 import ModalWindowApp from "@/components/Modal-Window-App";
 export default {
@@ -73,10 +77,24 @@ export default {
     return{
       detailsVisibility:false,
       orderHistory:null,
-      historyModalVisibility:false
+      historyModalVisibility:false,
+      barcodeData:null,
+      showBarcodeModal:false
     }
   },
   methods:{
+    openBarcode(){
+      const svg = document.createElement('svg');
+      JsBarcode(svg, `ORD-22010${this.order['Номер'].replace(/^0+/, '')}`, {
+        format: "CODE128",
+        displayValue: false,
+        height: 50,
+        margin: 0,
+        fontSize: 0
+      });
+      this.barcodeData = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg.outerHTML);
+      this.showBarcodeModal = true;
+    },
     showDetails(value){
 this.detailsVisibility = value
     },
