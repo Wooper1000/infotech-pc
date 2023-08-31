@@ -28,15 +28,15 @@
     <div v-if=order.ticket class="description" >
       <h4 class="description-header">Услуги</h4>
       <ol class="description-text">
-        <li v-for="service in services" :key="service['УслугаИД']" style="margin-top: 7px">
+        <li v-for="service in services" :key="service?.['УслугаИД']" style="margin-top: 7px">
           <!-- Разделяем строку по пробелам и обрабатываем каждое слово -->
-          <span v-for="(word, index) in service.split(' ')" :key="index" style="word-wrap:break-word ">
+          <span v-for="(word, index) in service?.split(' ')" :key="index" style="word-wrap:break-word ">
       <!-- Если это первое слово, делаем его зеленым -->
       <span v-if="index === 0" style="color: green;font-weight: bold;background-color: rgba(211,211,211,0.5)">{{word}}</span>
             <!-- Иначе, просто выводим слово как есть -->
       <span v-else>{{word}}</span>
             <!-- Добавляем пробелы между словами, кроме последнего слова -->
-      <span v-if="index !== service.split(' ').length - 1">&nbsp;</span>
+      <span v-if="index !== service?.split(' ').length - 1">&nbsp;</span>
     </span>
         </li>
       </ol>
@@ -93,7 +93,7 @@ export default {
     },
     services(){
       let services = []
-      this.order.ticket.Ticket.Services.forEach(service=>{
+      this.order?.ticket.Ticket.Services.forEach(service=>{
         if(service['номерУслуги']>=services.length){
           if(!services[service['номерУслуги']-1]){
             services[service['номерУслуги']-1] = ''
