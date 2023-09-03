@@ -1,17 +1,18 @@
-
 import instance from "../midddleware/auth-request.mjs";
 import dateFormat from "dateformat";
 import equipmentSchedule from "../equipmentTable/equipment.json" assert { type: "json" };
-
-
+import axios from "axios";
+import parser from '../2gis/parser.mjs'
 export const test = async ()=>{
     let response = await instance.get(`Services/get?format=v2`)
     return response?.data['Answer']
 }
-export const getJobList = async ()=>{
-let response = await instance.post(`joblist/get`)
-    return response?.data['Answer']
-}
+export const getJobList = async () => {
+    let response = await instance.post(`joblist/get`);
+        return response?.data['Answer'];
+};
+
+
 export const getTicket = async (order)=>{
 let response = await instance.get(`Tickets/get?number=${order}`)
     return response?.data['Answer']
@@ -42,22 +43,10 @@ export const getPortsListWithDescriptionByObit = async (obit)=>{
     }
 }
 export const getCabdiagByObitAndPort = (obit,port)=>{
-    // try {
-    //     let response = await instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
-    //     console.log(response.data['Answer'])
-    //     return response.data['Answer']
-    // }
-    // catch (err){
-    //     console.log(err)
-    //     return err
-    // }
-
         return  instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
-
 
 }
 export const getAddressUid = async (uid)=>{
-    console.log(uid)
     let promise = await instance.post(`/addresses/getbyphaddress?full&uid=${uid}`).catch(err=>console.log('Ошибка получения UID',uid))
     return {
         uid: promise?.data['Список'][0]['Ссылка'],
@@ -65,24 +54,10 @@ export const getAddressUid = async (uid)=>{
         street: promise?.data['Список'][0]['Улица'],
         home: promise?.data['Список'][0]['Дом'],
         additionalInfo: promise?.data['Список'][0]['ДопДанные'],
+        coordinates: {lon:promise?.data['Список'][0]['Долгота'],lat:promise?.data['Список'][0]['Широта']}
     }
 }
 export const getContractsByAddress = async (uid,flat)=>{
-    let address2 =
-        {
-            "Договор": "",
-            "АдресАрендодателя": {
-                "uid": "762be4c2-c3aa-11e3-bb89-003048c6b4ab",
-                "Code": "",
-                "Name": "Народного Ополчения пр-кт, 10, лит. А"
-            },
-            "АдресУлица": "Народного Ополчения пр-кт",
-            "АдресДом": "10",
-            "АдресЛитера": "А",
-            "АдресКорпус": "",
-            "АдресКвартира": flat.toString()
-        }
-
     let address = {
         "Договор": "",
         "АдресАрендодателя": {
@@ -170,4 +145,29 @@ export const getEquipmentList = async() => {
     };
    return groupBy(activeEquipment,'Presentation')
 
+}
+export const getAddressStructure = async(addressUid)=>{
+    let coordinates = null
+    let address = null
+    try{
+        let response = await getAddressUid(addressUid)
+        coordinates = response.coordinates
+        address = response.street +' '+response.home
+    }
+  catch (e) {
+      return console.log(e)
+  }
+    try {
+        let response = await parser.getAddrInfo(coordinates.lat,coordinates.lon,address)
+       if(response.status === 'ok'){
+           return response.lounges
+       }
+        else {
+            return 'Ошибочка вышла при запросе к 2gis внутри requests.mjs'
+       }
+    }
+    catch (error){
+        console.log('Ошибка запроса к серверу gis у романа на сервере',error)
+        return error
+    }
 }

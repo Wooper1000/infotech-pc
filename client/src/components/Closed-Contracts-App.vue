@@ -14,7 +14,8 @@
         </div>
       </div>
         <PreloaderApp :isLoading="isLoading"/>
-        <MyButtonApp value="Найти" @click="getClosedContracts"/>
+        <MyButtonApp value="Найти" @click="getClosedContracts();useManualSearch=true"/>
+      <div v-if="useManualSearch">
       <div :style="msgStyle(flat)" class="flat-info" v-for="flat in flats" :key="flat.flat" ref="flatContainer">
           <div class="flat-msg">
             {{ flat.msg }}
@@ -26,7 +27,63 @@
             <a v-if="flat.disabled && !flat.isCableAvailable" :href="'tel:'+flat.disabledContractTelephone"><img class="flat-status-icon"  src="../assets/icons/telephone-call.png" alt="need to call"></a>
           </div>
         </div>
-
+        <MyButtonApp value="Скрыть" @click="useManualSearch=false"/>
+      </div>
+      <div v-if="addressStructure && addressStructure.length">
+        <div v-for="entrance in addressStructure" :key="entrance.number" class="entrance">
+          <div class="entrance-title" @click="entrance.expanded = !entrance.expanded">
+            <div class="flex-container">
+              <div class="content">
+                <strong>Подъезд</strong> {{ entrance.number }} (Квартиры: {{ entranceFlatsRange(entrance) }})
+              </div>
+              <button class="search-button" @click.stop="toggleEntrance(entrance); getClosedContractsForRange(entranceFlatsRange(entrance).split('-')[0], entranceFlatsRange(entrance).split('-')[1])">
+                <i v-if="!isLoading" style="color: red" class="mdi mdi-database-search-outline"></i>
+                <i v-if="isLoading" style="color: red" class="mdi mdi-loading"></i>
+              </button>
+            </div>
+          </div>
+          <div v-show="entrance.expanded" v-for="floor in entrance.floors" :key="floor.number" class="floor">
+            <div class="floor-title" @click="floor.expanded = !floor.expanded">
+              <div class="flex-container">
+                <div class="content">
+              <strong>Этаж</strong> {{ floor.number }} (Квартиры: {{ floorFlatsRange(floor) }})
+                </div>
+                <button class="search-button" @click="getClosedContractsForRange(floorFlatsRange(floor).split('-')[0], floorFlatsRange(floor).split('-')[1])">
+                  <i v-if="!isLoading" style="color: red" class="mdi mdi-database-search-outline"></i>
+                  <i v-if="isLoading" style="color: red" class="mdi mdi-loading"></i>
+                </button>
+              </div>
+            </div>
+            <div v-show="floor.expanded" v-for="appart in floor.apparts" :key="appart" class="appart">
+              <div class="flex-container">
+                <div class="content">
+                  <div v-if="flats[appart]">
+                    <div :style="msgStyle(flats[appart])" class="flat-info">
+                      <div class="flat-msg">
+                        {{ flats[appart].msg ? flats[appart].msg : appart }}
+                      </div>
+                      <div class="flat-status">
+                        <i v-if="!flats[appart].isCableAvailable" class="mdi mdi-close-circle-outline" style="font-size: 20px; color: red;"></i>
+                        <i v-if="flats[appart].isCableAvailable" class="mdi mdi-check-circle-outline" style="font-size: 20px; color: green;"></i>
+                        <a v-if="flats[appart].disabled && !flats[appart].isCableAvailable" :href="'tel:'+flats[appart].disabledContractTelephone">
+                          <i class="mdi mdi-phone" style="font-size: 40px; color: blue;"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else>
+                    {{ appart }}
+                  </div>
+                </div>
+                <button class="search-button" @click.stop="getClosedContractsForRange(appart,appart)">
+                  <i v-if="!isLoading" style="color: red" class="mdi mdi-database-search-outline"></i>
+                  <i v-if="isLoading" style="color: red" class="mdi mdi-loading"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </template>
 
 <script>
@@ -43,28 +100,60 @@ export default {
   },
   data() {
     return {
+      useManualSearch:false,
       min: null,
       max: null,
-      flats: [],
+      flats: {},
       flatListVisibility: false,
       isLoading:false,
+      addressStructure:null
 
     }
   },
+  computed: {
+        entranceFlatsRange() {
+  return entrance => {
+    const minFlat = Math.min(...entrance.floors.flatMap(floor => floor.apparts));
+    const maxFlat = Math.max(...entrance.floors.flatMap(floor => floor.apparts));
+    return `${minFlat}-${maxFlat}`;
+  }
+},
+floorFlatsRange() {
+  return floor => {
+    const minFlat = Math.min(...floor.apparts);
+    const maxFlat = Math.max(...floor.apparts);
+    return `${minFlat}-${maxFlat}`;
+  }
+}
+},
   props: {
     uid: {
-      type: Object
-    }
+      type: String
+    },
+    address:String
+  },
+  async created() {
+    let response = await fetch(config.serverURL+`/get-address-structure?address=${this.uid}`)
+    this.addressStructure = await response.json()
+    this.addressStructure.forEach(entrance => {
+      entrance.expanded = false;
+      entrance.floors.forEach(floor => {
+        floor.expanded = false;
+      });
+    });
   },
   methods: {
-    // async getClosedContracts() {
-    //   this.isLoading = true
-    //   let promise = await fetch(config.serverURL + '/get-contracts-in-range-of-flats' + `?uid=${this.uid}&min=${this.min}&max=${this.max}`)
-    //   this.flats = await promise.json()
-    //   this.flatListVisibility = true
-    //   this.isLoading = false
-    // },
-
+    toggleEntrance(entrance) {
+      entrance.expanded = !entrance.expanded;
+      entrance.floors.forEach(floor => {
+        floor.expanded = entrance.expanded;
+      });
+    },
+    async getClosedContractsForRange(min, max) {
+      this.min = min;
+      this.max = max;
+      await this.getClosedContracts()
+    },
     async getClosedContracts() {
       const inputs = document.querySelectorAll('input');
       inputs.forEach((input) => {
@@ -99,13 +188,15 @@ this.flats= []
             const index = receivedData.indexOf('\n');
             const jsonData = receivedData.substring(0, index);
             receivedData = receivedData.substring(index + 1);
-
             const data = JSON.parse(jsonData);
-            this.flats.push(data);
+            this.flats = { ...this.flats, [data.flat]: data };
             await this.$nextTick(); // Ожидаем обновления DOM
             const flatContainer = this.$refs.flatContainer;
-            const lastFlatElement = flatContainer[flatContainer.length-1];
-            lastFlatElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            if(flatContainer && this.useManualSearch){
+              const lastFlatElement = flatContainer[flatContainer.length-1];
+              lastFlatElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+
           }
         }
         // Закрываем соединение и завершаем процесс загрузки данных
@@ -118,7 +209,7 @@ this.flats= []
     },
     msgStyle(flat) {
       return {
-        color:flat['disabled'] ? 'orange' : flat['isActive'] ? 'green':flat.isCableAvailable?'red':'gray'
+        color:flat['disabled'] ? 'orange' : flat['isActive'] ? 'green':flat.isCableAvailable?'red':'black'
       }
     },
   }
@@ -126,6 +217,44 @@ this.flats= []
 </script>
 
   <style scoped>
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Чтобы выровнять элементы по вертикали */
+  }
+  .search-button{
+    text-align: right;
+  }
+  .entrance-title, .floor-title, .appart {
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+    color: white;
+  }
+
+  .floor-title {
+    color: white;
+  }
+
+  .entrance {
+    padding: 10px;
+    background-color: #003366;
+    margin-top: 5px;
+  }
+
+  .floor {
+    background: #469df3;
+    margin-left: 10px;
+    width: 95%;
+  }
+
+  .appart {
+    background: #6EB3EFFF;
+    margin-left: 20px;
+    width: 85%;
+  }
+
+
   .inputList {
     display: flex;
     justify-content: center;

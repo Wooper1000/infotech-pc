@@ -11,7 +11,7 @@
   </div>
 
     <ModalWindowApp :show="showClosedContracts" @close="showClosedContracts=false">
-      <ClosedContractsApp :uid='addressUid'/>
+      <ClosedContractsApp :uid='addressUid' :address="order['ФизическийАдрес'].Name"/>
     </ModalWindowApp>
 
 

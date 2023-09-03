@@ -13,12 +13,15 @@ import {
     getContractInfo,
     getReport,
     getJobHistory,
-    test, getEquipmentList, getPortsListByObit, getCabdiagByObitAndPort, getPortsListWithDescriptionByObit
+    test,
+    getEquipmentList,
+    getPortsListByObit,
+    getCabdiagByObitAndPort,
+    getPortsListWithDescriptionByObit,
+    getAddressStructure
 } from "./infotech-requests/requests.mjs";
 
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
-
-
 
 const PORT = config.PORT
 
@@ -205,28 +208,9 @@ app.get('/get-equipment-list', async (req, res) => {
     let equipment = await getEquipmentList()
     res.send(equipment)
 })
-
-
-
-app.get('/test', async (req, res) => {
-    console.log('Получили запрос на получение заявок')
-   setTimeout(()=> {
-       console.log('отдаём заявки')
-       res.json('Выполнили запрос заявок')
-   },10000)
-})
-    app.get('/test2', async (req, res) => {
-        console.log('получили запрос на обработку заявок')
-        setTimeout(()=> {
-            console.log('Выполнили обработку заявок')
-            res.json('Выполнили обработку заявок')
-        },100)
-})
-    app.get('/test3', async (req, res) => {
-        console.log('получили запрос на зарплату')
-        setTimeout(()=> {
-            console.log('Выполнили запрос зарплаты')
-            res.json('Выполнили запрос зарплаты')
-        },4000)
+app.get('/get-address-structure',async (req,res)=>{
+    let address = req.query.address
+        let structure = await getAddressStructure(address)
+        res.json(structure)
 })
 
