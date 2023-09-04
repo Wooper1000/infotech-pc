@@ -211,6 +211,6 @@ app.get('/get-equipment-list', async (req, res) => {
 app.get('/get-address-structure',async (req,res)=>{
     let address = req.query.address
         let structure = await getAddressStructure(address)
-        res.json(structure)
+        res.status(structure.status).json(structure.data)
 })
 

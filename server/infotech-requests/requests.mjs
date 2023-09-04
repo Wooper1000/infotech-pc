@@ -160,10 +160,10 @@ export const getAddressStructure = async(addressUid)=>{
     try {
         let response = await parser.getAddrInfo(coordinates.lat,coordinates.lon,address)
        if(response.status === 'ok'){
-           return response.lounges
+           return {data:response.lounges,status:200}
        }
         else {
-            return 'Ошибочка вышла при запросе к 2gis внутри requests.mjs'
+            return {data:'Ошибочка вышла при запросе к 2gis внутри requests.mjs',status:404}
        }
     }
     catch (error){

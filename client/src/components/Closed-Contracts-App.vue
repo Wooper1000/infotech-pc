@@ -30,6 +30,7 @@
         <MyButtonApp value="Скрыть" @click="useManualSearch=false"/>
       </div>
       <div v-if="addressStructure && addressStructure.length">
+        <hr>
         <div v-for="entrance in addressStructure" :key="entrance.number" class="entrance">
           <div class="entrance-title" @click="entrance.expanded = !entrance.expanded">
             <div class="flex-container">
@@ -84,6 +85,8 @@
           </div>
         </div>
       </div>
+      <div style="text-align: center" v-if="errorInFormationAddressStructure">
+        <hr>Структура дома не загружена</div>
     </template>
 
 <script>
@@ -106,8 +109,8 @@ export default {
       flats: {},
       flatListVisibility: false,
       isLoading:false,
-      addressStructure:null
-
+      addressStructure:null,
+      errorInFormationAddressStructure: null
     }
   },
   computed: {
@@ -134,13 +137,16 @@ floorFlatsRange() {
   },
   async created() {
     let response = await fetch(config.serverURL+`/get-address-structure?address=${this.uid}`)
-    this.addressStructure = await response.json()
-    this.addressStructure.forEach(entrance => {
-      entrance.expanded = false;
-      entrance.floors.forEach(floor => {
-        floor.expanded = false;
+    if(response.status===200){
+      this.addressStructure = await response.json()
+      this.addressStructure.forEach(entrance => {
+        entrance.expanded = false;
+        entrance.floors.forEach(floor => {
+          floor.expanded = false;
+        });
       });
-    });
+    }
+    else this.errorInFormationAddressStructure = true
   },
   methods: {
     toggleEntrance(entrance) {
