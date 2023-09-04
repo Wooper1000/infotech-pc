@@ -119,7 +119,7 @@ export const getReport = async (start,finish,variant) => {
             ]
         }
     })
-    return promise.data['Answer']
+    return promise?.data['Answer']
 }
 export const getJobHistory = async(orderNumber) => {
     let promise = await instance.get(`/job/history?number=${orderNumber}`)
