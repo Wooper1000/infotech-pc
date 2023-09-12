@@ -14,8 +14,8 @@
         </div>
       </div>
         <PreloaderApp :isLoading="isLoading"/>
-        <MyButtonApp value="Найти" @click="getClosedContracts();useManualSearch=true"/>
-      <div v-if="useManualSearch">
+        <MyButtonApp value="Найти" @click="()=>{getClosedContracts();this.useManualSearch=true}"/>
+      <div v-show="useManualSearch">
       <div :style="msgStyle(flat)" class="flat-info" v-for="flat in flats" :key="flat.flat" ref="flatContainer">
           <div class="flat-msg">
             {{ flat.msg }}
