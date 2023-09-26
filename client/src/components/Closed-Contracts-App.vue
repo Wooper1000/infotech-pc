@@ -15,6 +15,8 @@
       </div>
         <PreloaderApp :isLoading="isLoading"/>
         <MyButtonApp value="Найти" @click="()=>{getClosedContracts();this.useManualSearch=true}"/>
+        <MyButtonApp v-show="Object.keys(flats).length" value="Сбросить" @click="clearFlatList"/>
+      <hr v-show="useManualSearch && Object.keys(flats).length">
       <div v-show="useManualSearch">
       <div :style="msgStyle(flat)" class="flat-info" v-for="flat in flats" :key="flat.flat" ref="flatContainer">
           <div class="flat-msg">
@@ -27,8 +29,8 @@
             <a v-if="flat.disabled && !flat.isCableAvailable" :href="'tel:'+flat.disabledContractTelephone"><img class="flat-status-icon"  src="../assets/icons/telephone-call.png" alt="need to call"></a>
           </div>
         </div>
-        <MyButtonApp value="Скрыть" @click="useManualSearch=false"/>
       </div>
+      <MyButtonApp v-show="Object.keys(flats).length" :value="useManualSearch ? 'Скрыть':'Показать'"   @click="useManualSearch=!useManualSearch"/>
       <div v-if="addressStructure && addressStructure.length">
         <hr>
         <div v-for="entrance in addressStructure" :key="entrance.number" class="entrance">
@@ -149,6 +151,9 @@ floorFlatsRange() {
     else this.errorInFormationAddressStructure = true
   },
   methods: {
+    clearFlatList(){
+      this.flats=[]
+    },
     toggleEntrance(entrance) {
       entrance.expanded = !entrance.expanded;
       entrance.floors.forEach(floor => {
@@ -166,7 +171,6 @@ floorFlatsRange() {
         input.blur();
       });
       this.isLoading = true;
-this.flats= []
       const response = await fetch(config.serverURL + '/get-contracts-in-range-of-flats' + `?uid=${this.uid}&min=${this.min}&max=${this.max}`);
 
       if (!response.ok) {
@@ -210,8 +214,8 @@ this.flats= []
         this.flatListVisibility = true;
         this.isLoading = false;
       };
-
       await processStream();
+      console.log(typeof this.flats)
     },
     msgStyle(flat) {
       return {
