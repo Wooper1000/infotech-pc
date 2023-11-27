@@ -1,5 +1,7 @@
 <template>
+
   <div class="orders-list-container">
+    <PreloaderApp v-show="isLoading"/>
     <WorkDayApp
         v-for="day in days"
         :key="day.date"
@@ -11,11 +13,14 @@
 <script>
 import WorkDayApp from "@/components/Work-Day-App.vue";
 
+import PreloaderApp from "@/components/Preloader-App";
+
 
 
 export default {
   name: "Orders-List-App.vue",
   components:  {
+    PreloaderApp,
     WorkDayApp
   },
   data() {
@@ -24,6 +29,9 @@ export default {
     }
   },
   computed: {
+    isLoading(){
+      return this.$store.state.isLoading
+    },
     filtersStatus(){
      return this.$store.state.statusFilters.currentStatus
     }
