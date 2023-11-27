@@ -128,9 +128,12 @@ export const getJobHistory = async(orderNumber) => {
 export const getEquipmentList = async() => {
     let promise = await instance.get(`trade/getEquipmentByOrders`)
     let equipmentList =  promise?.data['Answer']
-    let activeEquipment = equipmentList.filter(equipment=>{
-        return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
-    }).map(equipment=>{
+    let activeEquipment = equipmentList
+         .filter(equipment=>{
+        // return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
+             return equipment['Номенклатура'].Parent.Parent.Presentation === 'Сетевое оборудование' || equipment['Номенклатура'].Parent.Presentation === 'МТС'
+     })
+        .map(equipment=>{
         return {
             'Заявка':equipment['Заявка'],
             'СерийныйНомер':equipment['СерийныйНомер'],
