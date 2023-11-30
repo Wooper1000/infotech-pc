@@ -11,14 +11,15 @@ export default {
    created() {
      this.$store.commit('isLoading', true);
     this.socket = new WebSocket(`${config.websocketURL}/get-orders-list`)
+     this.$store.commit('setSocket',this.socket)
      this.socket.onopen = ()=>{
        console.log('WebSocket соеденение налажено')
-       this.socket.send('giveMeOrders')
+       this.socket.send('refresh')
      }
      this.socket.onmessage = (event)=>{
       let orders = JSON.parse(event.data).orders
        this.$store.commit('setOrders', orders);
-      this.$store.commit('setUpdateTime',new Date().toLocaleString("ru"))
+        this.$store.commit('setUpdateTime',JSON.parse(event.data).updateTime)
        this.$store.commit('isLoading', false);
      }
      this.socket.onerror = function() {

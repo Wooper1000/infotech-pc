@@ -215,6 +215,8 @@ app.get('/get-address-structure',async (req,res)=>{
         let structure = await getAddressStructure(address)
         res.status(structure.status).json(structure.data)
 })
+let savedOrders = null
+let updateTime = null
 app.ws('/get-orders-list', async(ws, req)=> {
     let updateOrders = async ()=>{
         let orders = await getJobList()
@@ -227,11 +229,28 @@ app.ws('/get-orders-list', async(ws, req)=> {
             }
             return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
         }))
+        savedOrders = ordersWithTicketsAndConfigurations
+        updateTime = new Date().toLocaleString("ru")
         return ordersWithTicketsAndConfigurations
     }
-    ws.send(JSON.stringify({orders:await updateOrders()}))
-    setInterval(async()=>{
-        ws.send(JSON.stringify({orders:await updateOrders()}))
-    },6000000)
+    ws.on('message',async (msg)=>{
+        console.log('Получил ',msg,' запрос')
+        if(savedOrders && msg==='refresh'){
+            ws.send(JSON.stringify({orders:savedOrders,updateTime}),()=>{
+                console.log('Отправил старые данные в ответ на рефреш')
+            })
+            ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
+                console.log('Отправил результат в догонку к рефрешу')})
+        }
+        else{
+            ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
+                console.log('Отправил результат после update')})
+            setInterval(async()=>{
+                ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
+                    console.log('Отправил результат по интервалу')
+                })
+            },600000)
+        }
+    })
 });
 

@@ -18,8 +18,10 @@ export default {
 .lds-circle > div {
   margin: 0 auto;
   display: block;
-  height: 40px;
-  width: 40px;
+  max-height: 40px;
+  max-width: 40px;
+  min-height: 16px;
+  min-width: 16px;
   border-radius: 50%;
   background: orange;
   animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;

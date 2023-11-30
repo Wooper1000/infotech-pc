@@ -27,6 +27,7 @@ export const store = createStore({
     },
     mutations: {
         setOrders(state, orders) {
+            console.log('Обновил заявки')
             state.statusFilters.filters.active.orders=[]
             state.statusFilters.filters.inactive.orders=[]
             orders.map(order => {
@@ -54,6 +55,9 @@ export const store = createStore({
         },
         setUpdateTime(state,value){
             state.updateTime = value
+        },
+        setSocket(state,value){
+            state.socket = value
         }
     },
     getters: {
