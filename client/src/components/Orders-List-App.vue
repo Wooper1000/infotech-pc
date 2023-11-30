@@ -1,5 +1,4 @@
 <template>
-
   <div class="orders-list-container">
     <PreloaderApp v-show="isLoading"/>
     <WorkDayApp
@@ -12,11 +11,7 @@
 
 <script>
 import WorkDayApp from "@/components/Work-Day-App.vue";
-
 import PreloaderApp from "@/components/Preloader-App";
-
-
-
 export default {
   name: "Orders-List-App.vue",
   components:  {
@@ -25,7 +20,7 @@ export default {
   },
   data() {
     return {
-
+      message: 'ХУЙ',
     }
   },
   computed: {

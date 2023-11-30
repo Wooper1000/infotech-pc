@@ -1,4 +1,5 @@
 import express from 'express'
+
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import multer from 'multer'
@@ -23,9 +24,12 @@ import {
 
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
 
-const PORT = config.PORT
 
+const PORT = config.PORT
 const app = express()
+import expressWs from 'express-ws'
+ expressWs(app)
+
 const upload = multer({
     dest: "./photos"
 });
@@ -35,8 +39,6 @@ app.use(bodyParser.json(
         extended: true
         , limit: '50mb'
     }));
-
-
 
 app.listen(PORT, () => console.log('App is listening on port ', PORT))
 let start = null
@@ -213,4 +215,23 @@ app.get('/get-address-structure',async (req,res)=>{
         let structure = await getAddressStructure(address)
         res.status(structure.status).json(structure.data)
 })
+app.ws('/get-orders-list', async(ws, req)=> {
+    let updateOrders = async ()=>{
+        let orders = await getJobList()
+        let ordersWithTickets = await Promise.all(orders.map(async (order) => {
+            return {...order, ticket: await getTicket(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
+        }))
+        let ordersWithTicketsAndConfigurations = await Promise.all(ordersWithTickets.map(async (order) => {
+            if (order['ТипРабот'] === 'Аварийные работы') {
+                return order
+            }
+            return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
+        }))
+        return ordersWithTicketsAndConfigurations
+    }
+    ws.send(JSON.stringify({orders:await updateOrders()}))
+    setInterval(async()=>{
+        ws.send(JSON.stringify({orders:await updateOrders()}))
+    },6000000)
+});
 
