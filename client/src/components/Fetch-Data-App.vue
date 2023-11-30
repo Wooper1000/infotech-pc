@@ -9,6 +9,7 @@ export default {
     }
   },
    created() {
+     this.$store.commit('isLoading', true);
     this.socket = new WebSocket(`${config.websocketURL}/get-orders-list`)
      this.socket.onopen = ()=>{
        console.log('WebSocket соеденение налажено')
@@ -17,6 +18,8 @@ export default {
      this.socket.onmessage = (event)=>{
       let orders = JSON.parse(event.data).orders
        this.$store.commit('setOrders', orders);
+      this.$store.commit('setUpdateTime',new Date().toLocaleString("ru"))
+       this.$store.commit('isLoading', false);
      }
      this.socket.onerror = function() {
 alert('АХТУНГ ВЕБСОЕКЕТ НЕ АЛЁ!!')
@@ -25,7 +28,7 @@ alert('АХТУНГ ВЕБСОЕКЕТ НЕ АЛЁ!!')
   },
   methods: {
     async fetchOrders() {
-      this.$store.commit('isLoading', true);
+
       // Запускаем параллельные запросы на получение заявок, оборудования и зарплат
 
       let equipmentListPromise = fetch(config.serverURL + '/get-equipment-list');
@@ -59,7 +62,7 @@ alert('АХТУНГ ВЕБСОЕКЕТ НЕ АЛЁ!!')
       // После выполнения всех запросов устанавливаем флаг isLoading в false
       Promise.all([equipmentListPromise, currentMonthSalaryPromise, prevMonthSalaryPromise])
           .then(() => {
-            this.$store.commit('isLoading', false);
+
           });
     },
   }

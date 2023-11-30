@@ -3,7 +3,11 @@ import {createStore} from "vuex";
 export const store = createStore({
     state() {
         return {
-            salary: null,
+            updateTime:null,
+            salary: {
+                currentMonthSalary:null,
+                prevMonthSalary:null
+            },
             isLoading: Boolean,
             statusFilters: {
                 currentStatus:'active',
@@ -47,6 +51,9 @@ export const store = createStore({
         },
         setEquipment(state,value){
             state.equipment = value
+        },
+        setUpdateTime(state,value){
+            state.updateTime = value
         }
     },
     getters: {

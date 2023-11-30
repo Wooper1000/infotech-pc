@@ -1,11 +1,13 @@
 <template>
   <div class="orders-list-container">
-    <PreloaderApp v-show="isLoading"/>
+    <PreloaderApp :isLoading="isLoading"/>
+    <h3 v-if="!isLoading && days.length" style="text-align: center">Обновлено: {{updated}}</h3>
     <WorkDayApp
         v-for="day in days"
         :key="day.date"
         :exact-day='day'
     />
+    <h1 v-if="!isLoading && !days.length" style="text-align: center">Заявок нет</h1>
   </div>
 </template>
 
@@ -18,12 +20,11 @@ export default {
     PreloaderApp,
     WorkDayApp
   },
-  data() {
-    return {
-      message: 'ХУЙ',
-    }
-  },
+
   computed: {
+    updated(){
+      return this.$store.state.updateTime
+    },
     isLoading(){
       return this.$store.state.isLoading
     },

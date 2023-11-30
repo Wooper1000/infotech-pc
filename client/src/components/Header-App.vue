@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="salary">{{ prevMonthSalary }}</div>
+    <div class="salary">{{ prevMonthSalary }}<PreloaderApp :isLoading="!prevMonthSalary"/></div>
     <div class="appName">Инфотех</div>
-    <div class="salary">{{ thisMonthSalary }}</div>
+    <div class="salary">{{ thisMonthSalary }}<PreloaderApp :isLoading="!thisMonthSalary"/></div>
     <img @click="menuVisibility=true" class="menu-icon" src="../assets/icons/menu-button-of-three-horizontal-lines.png"
          alt="menu">
   </div>
@@ -56,7 +56,9 @@ export default {
     FiltersListApp,
     MyButtonApp
   },
-
+mounted() {
+  console.log(this.$store.state.salary?.currentMonthSalary)
+},
   data() {
     return {
       menuVisibility: false,
@@ -64,7 +66,7 @@ export default {
       ports: ref([]),
       switchObit: null,
       itemRefs: ref([]),
-      loading:false
+      loading:false,
     }
   },
   computed: {
