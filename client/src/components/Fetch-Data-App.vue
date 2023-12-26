@@ -23,7 +23,7 @@ export default {
        this.$store.commit('isLoading', false);
      }
      this.socket.onerror = function() {
-alert('АХТУНГ ВЕБСОЕКЕТ НЕ АЛЁ!!')
+       console.log('Socket оборвался')
      };
     this.fetchOrders()
   },

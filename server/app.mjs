@@ -198,9 +198,9 @@ app.post('/upload-photo', upload.array('files', 10), async (req, res) => {
 })
 app.get('/get-report', async (req, res) => {
     let report = await getReport(req.query.start,req.query.finish,req.query.variant)
-    let buff = new Buffer(report, 'base64');
-    let text = buff.toString('utf8');
-    res.send(text.split('{16,')[20].split(',')[4].replace(/[^0-9]/g, ""))
+    if (report){let buff = new Buffer(report, 'base64');
+        let text = buff.toString('utf8');
+        res.send(text.split('{16,')[20].split(',')[4].replace(/[^0-9]/g, ""))}
 })
 app.get('/get-job-history', async (req, res) => {
     let history = await getJobHistory(req.query['order-number'])
@@ -220,18 +220,21 @@ let updateTime = null
 app.ws('/get-orders-list', async(ws, req)=> {
     let updateOrders = async ()=>{
         let orders = await getJobList()
-        let ordersWithTickets = await Promise.all(orders.map(async (order) => {
-            return {...order, ticket: await getTicket(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
-        }))
-        let ordersWithTicketsAndConfigurations = await Promise.all(ordersWithTickets.map(async (order) => {
-            if (order['ТипРабот'] === 'Аварийные работы') {
-                return order
-            }
-            return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
-        }))
-        savedOrders = ordersWithTicketsAndConfigurations
-        updateTime = new Date().toLocaleString("ru")
-        return ordersWithTicketsAndConfigurations
+        if (orders){
+            let ordersWithTickets = await Promise.all(orders.map(async (order) => {
+                return {...order, ticket: await getTicket(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
+            }))
+            let ordersWithTicketsAndConfigurations = await Promise.all(ordersWithTickets.map(async (order) => {
+                if (order['ТипРабот'] === 'Аварийные работы') {
+                    return order
+                }
+                return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
+            }))
+            savedOrders = ordersWithTicketsAndConfigurations
+            updateTime = new Date().toLocaleString("ru")
+            return ordersWithTicketsAndConfigurations
+        }
+
     }
     ws.on('message',async (msg)=>{
         console.log('Получил ',msg,' запрос')

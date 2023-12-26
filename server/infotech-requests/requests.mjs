@@ -8,8 +8,13 @@ export const test = async ()=>{
     return response?.data['Answer']
 }
 export const getJobList = async () => {
-    let response = await instance.post(`joblist/get`);
+    try{
+        let response = await instance.post(`joblist/get`);
         return response?.data['Answer'];
+    }
+   catch (e){
+       console.log(e.data.exception)
+   }
 };
 
 
@@ -102,51 +107,63 @@ export const getContractInfo = async (contract) => {
 export const getReport = async (start,finish,variant) => {
     let startDate = dateFormat(start, "yyyy-mm-dd") + "T00:00:00"
     let endDate = dateFormat(finish, "yyyy-mm-dd") + "T23:59:59"
-    let promise = await instance.post('Reports/Get', {
-        "id": "c2f0ef93-c513-11ea-b976-005056b57a2d",
-        "param": {
-            "Filter": [],
-            "Params": [
-                {
-                    "id": "d98ea70f-c5d9-4c44-9808-7d98f9971031",
-                    "use": true,
-                    "value": {
-                        "Variant": variant ? variant: "Этотмесяц",
-                        "StartDate": startDate,
-                        "EndDate": endDate
+    try{
+        let promise = await instance.post('Reports/Get', {
+            "id": "c2f0ef93-c513-11ea-b976-005056b57a2d",
+            "param": {
+                "Filter": [],
+                "Params": [
+                    {
+                        "id": "d98ea70f-c5d9-4c44-9808-7d98f9971031",
+                        "use": true,
+                        "value": {
+                            "Variant": variant ? variant: "Этотмесяц",
+                            "StartDate": startDate,
+                            "EndDate": endDate
+                        }
                     }
-                }
-            ]
-        }
-    })
-    return promise?.data['Answer']
+                ]
+            }
+        })
+        return promise?.data['Answer']
+    }
+  catch (e){
+      console.log(e.data.exception)
+  }
 }
 export const getJobHistory = async(orderNumber) => {
     let promise = await instance.get(`/job/history?number=${orderNumber}`)
     return promise?.data['Answer']
 }
 export const getEquipmentList = async() => {
-    let promise = await instance.get(`trade/getEquipmentByOrders`)
-    let equipmentList =  promise?.data['Answer']
-    let activeEquipment = equipmentList
-         .filter(equipment=>{
-        // return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
-             return equipment['Номенклатура'].Parent.Parent.Presentation === 'Сетевое оборудование' || equipment['Номенклатура'].Parent.Presentation === 'МТС'
-     })
-        .map(equipment=>{
-        return {
-            'Заявка':equipment['Заявка'],
-            'СерийныйНомер':equipment['СерийныйНомер'],
-            Presentation:equipment['Номенклатура'].Presentation
-        }
-    })
-    let groupBy = function(xs, key) {
-        return xs.reduce(function(rv, x) {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv;
-        }, {});
-    };
-   return groupBy(activeEquipment,'Presentation')
+    try{
+        let promise = await instance.get(`trade/getEquipmentByOrders`)
+        let equipmentList =  promise?.data['Answer']
+        let activeEquipment = equipmentList
+            .filter(equipment=>{
+                // return equipmentSchedule.hasOwnProperty(equipment['Номенклатура']['uid'])
+                return equipment['Номенклатура'].Parent.Parent.Presentation === 'Сетевое оборудование' || equipment['Номенклатура'].Parent.Presentation === 'МТС'
+            })
+            .map(equipment=>{
+                return {
+                    'Заявка':equipment['Заявка'],
+                    'СерийныйНомер':equipment['СерийныйНомер'],
+                    Presentation:equipment['Номенклатура'].Presentation
+                }
+            })
+        let groupBy = function(xs, key) {
+            return xs.reduce(function(rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+        };
+        return groupBy(activeEquipment,'Presentation')
+    }
+    catch (e){
+        console.log(e.exception)
+    }
+
+
 
 }
 export const getAddressStructure = async(addressUid)=>{

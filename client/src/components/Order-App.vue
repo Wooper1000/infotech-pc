@@ -85,10 +85,10 @@ export default {
   methods:{
     openBarcode(){
       const svg = document.createElement('svg');
-      JsBarcode(svg, `ORD-22010${this.order['Номер'].replace(/^0+/, '')}`, {
+      JsBarcode(svg, `ORD-23010${this.order['Номер'].replace(/^0+/, '')}`, {
         format: "CODE128",
         displayValue: false,
-        height: 50,
+        height: 300,
         margin: 0,
         fontSize: 0
       });
