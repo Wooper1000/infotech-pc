@@ -117,9 +117,10 @@ app.get('/get-ports', async (req, res) => {
         let cabDiagPromises = Object.keys(ports).map(port => {
             if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
                 console.log('зашёл')
-                return getCabdiagByObitAndPort(obit, port).then(resolve=>{
+                return getCabdiagByObitAndPort(obit, port).then(async resolve=>{
                     ports[port].cabdiag=resolve
                     res.write(JSON.stringify(ports))
+                    await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
                 })
             }
         });
@@ -130,7 +131,6 @@ app.get('/get-ports', async (req, res) => {
                 updated: new Date().toLocaleString('ru-RU')
             };
             // Записываем обновленные данные в файл
-            await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
             res.end();
             console.log('Файл с свитчами обновлён');
         });
