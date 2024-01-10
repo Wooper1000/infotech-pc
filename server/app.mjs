@@ -116,23 +116,23 @@ app.get('/get-ports', async (req, res) => {
         res.write(JSON.stringify(ports))
         let cabDiagPromises = Object.keys(ports).map(port => {
             if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
-                console.log('зашёл')
                 return getCabdiagByObitAndPort(obit, port).then(async resolve=>{
                     ports[port].cabdiag=resolve
+                    switchesData[obit] = {
+                        ports,
+                        updated: new Date().toLocaleString('ru-RU')
+                    };
+                   await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
+                    console.log('Файл с свитчами обновлён');
                     res.write(JSON.stringify(ports))
-                    await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
+
                 })
             }
         });
         Promise.all(cabDiagPromises).then(async () => {
             // Добавляем или обновляем данные
-            switchesData[obit] = {
-                ports,
-                updated: new Date().toLocaleString('ru-RU')
-            };
             // Записываем обновленные данные в файл
             res.end();
-            console.log('Файл с свитчами обновлён');
         });
 
 });
