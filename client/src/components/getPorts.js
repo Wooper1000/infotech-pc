@@ -4,6 +4,7 @@ import config from "@/config/config.json";
 export default async function (obit,func){
     let response = await fetch(config.serverURL + '/get-ports' + `?obit=${obit}`);
     const reader = response.body.getReader();
+
     let result = '';
 let a = true
     while (a) {

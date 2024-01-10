@@ -46,7 +46,7 @@
   <ModalWindowApp :show="historyModalVisibility" @close="historyModalVisibility=!historyModalVisibility" >
     <ol>
       <li v-for="note in orderHistory" :key="note['Период']" style="margin: 10px">
-        {{note['Комментарий']}}
+       <strong v-if="note"></strong> {{note['Комментарий']}}
       </li>
     </ol>
   </ModalWindowApp>

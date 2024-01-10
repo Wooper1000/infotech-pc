@@ -47,8 +47,9 @@ export const getPortsListWithDescriptionByObit = async (obit)=>{
         return err
     }
 }
-export const getCabdiagByObitAndPort = (obit,port)=>{
-        return  instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
+export const getCabdiagByObitAndPort = async (obit,port)=>{
+        let response =  await instance.get(`netobject/telem_srv?obitnumber=OBIT-${obit}&act=cab_diag&port=${port}`)
+        return response?.data['Answer']
 
 }
 export const getAddressUid = async (uid)=>{
@@ -97,7 +98,7 @@ export const getOrderIP = async (order) => {
     return promise?.data?.['Answer']?.data
 }
 export const getContractStatus = async (contracts) => {
-    let promise =  await instance.post(`home/contractstatus`,{"contracts":contracts})
+    let promise =  await instance.post(`home/contractstatus`,contracts)
     return promise?.data['Answer']
 }
 export const getContractInfo = async (contract) => {
@@ -133,6 +134,10 @@ export const getReport = async (start,finish,variant) => {
 }
 export const getJobHistory = async(orderNumber) => {
     let promise = await instance.get(`/job/history?number=${orderNumber}`)
+    return promise?.data['Answer']
+}
+export const getFvnoPort = async(portDescription) => {
+    let promise = await instance.post(`/netobject/get_fvno_port`,{"PortDesc":portDescription})
     return promise?.data['Answer']
 }
 export const getEquipmentList = async() => {

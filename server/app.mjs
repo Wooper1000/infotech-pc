@@ -19,7 +19,7 @@ import {
     getPortsListByObit,
     getCabdiagByObitAndPort,
     getPortsListWithDescriptionByObit,
-    getAddressStructure
+    getAddressStructure, getContractStatus, getFvnoPort
 } from "./infotech-requests/requests.mjs";
 
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
@@ -28,6 +28,7 @@ import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
 const PORT = config.PORT
 const app = express()
 import expressWs from 'express-ws'
+import fs from 'fs/promises';
  expressWs(app)
 
 const upload = multer({
@@ -66,45 +67,74 @@ app.get('/make-call', async (req, res) => {
     res.send(promise)
 })
 app.get('/get-ports', async (req, res) => {
-    let obit = req.query.obit;
-    let ports = await getPortsListWithDescriptionByObit(obit);
-    ports = JSON.parse(ports)
-    for(let port in ports){
-      if(!ports[port].hasOwnProperty('description') || port.includes('TenGigabit')) delete ports[port]
+    const filePath = './switches/switches.json';
+
+    // Читаем текущее содержимое файла
+    let fileContent = await fs.readFile(filePath, 'utf-8');
+    let switchesData = {};
+    try {
+        switchesData = JSON.parse(fileContent);
+    } catch (error) {
+        console.error('Error parsing switches.json:', error);
     }
-    let cabDiagArr = [];
-
-    Object.keys(ports).forEach(port => {
-        if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
-            cabDiagArr.push({
-                port: {
-                    status: ports[port].status,
-                    description: ports[port].description,
-                    contract: ports[port].contract,
-                    obithome: ports[port].obithome,
-                    portNumber:port
-                },
-                diag: getCabdiagByObitAndPort(obit, port)
-            });
-
+    let obit = req.query.obit
+        if(switchesData[obit]){
+            console.log('Есть такой')
+            res.send(switchesData[obit].ports)
         }
-    });
+        let ports = await getPortsListWithDescriptionByObit(obit);
+        ports = JSON.parse(ports);
+        for(let port in ports){
+            if(!ports[port].hasOwnProperty('description') || port.includes('TenGigabit')) delete ports[port]
+        }
+        // res.write(JSON.stringify(ports))
+        let contractStatusArr ={
+            contracts: Object.keys(ports).map(port=>{
+                return ports[port].contract
+            })
+        }
+        let contractStatusList = await getContractStatus(contractStatusArr)
+        contractStatusList.forEach(contract=>{
+            let portToEdit=Object.keys(ports).find(port=>{
+                return  ports[port]['contract'] === contract['Договор']
+            })
+            ports[portToEdit] = {... ports[portToEdit],binding:contract['Статус']}
+        })
+        // res.write(JSON.stringify(ports))
+        let fvnoContractsList = Object.keys(ports).filter(port=>{
+            return ports[port].description?.includes('#FVNO')
+        })
 
-    cabDiagArr.forEach((promise) => {
-        promise.diag.then(resolve => {
-            const responseData = {
-                data: resolve.data['Answer'],
-                port: promise.port
-            };
-            const serializedData = JSON.stringify(responseData);
-            res.write(serializedData); // Отправляем данные на фронт
+        let fvnoPromises = fvnoContractsList.map(contract => {
+            return getFvnoPort(ports[contract].description).then(resolve => {
+                ports[contract].fvno = resolve;
+            });
         });
-    });
 
-    const promises = cabDiagArr.map(promise => promise.diag);
-    Promise.all(promises).then(() => {
-        res.end(); // Завершаем ответ после разрешения всех промисов
-    });
+        // Ждем, пока все промисы разрешатся
+        await Promise.all(fvnoPromises);
+        res.write(JSON.stringify(ports))
+        let cabDiagPromises = Object.keys(ports).map(port => {
+            if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
+                console.log('зашёл')
+                return getCabdiagByObitAndPort(obit, port).then(resolve=>{
+                    ports[port].cabdiag=resolve
+                    res.write(JSON.stringify(ports))
+                })
+            }
+        });
+        Promise.all(cabDiagPromises).then(async () => {
+            // Добавляем или обновляем данные
+            switchesData[obit] = {
+                ports,
+                updated: new Date().toLocaleString('ru-RU')
+            };
+            // Записываем обновленные данные в файл
+            await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
+            res.end();
+            console.log('Файл с свитчами обновлён');
+        });
+
 });
 app.get('/get-contracts-in-range-of-flats', async (req, res) => {
     const start = new Date().getTime();
@@ -204,6 +234,7 @@ app.get('/get-report', async (req, res) => {
 })
 app.get('/get-job-history', async (req, res) => {
     let history = await getJobHistory(req.query['order-number'])
+    console.log(history)
     res.send(history)
 })
 app.get('/get-equipment-list', async (req, res) => {
