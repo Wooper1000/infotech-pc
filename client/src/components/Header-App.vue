@@ -33,7 +33,7 @@
 
       <div> <b>{{ port?.description }}</b></div>
       <div> <b>{{ port.fvno?.[0]['Адрес'] }}</b></div>
-      <div :style="{color:port.binding === 'Активен'?'black':'red'}"> {{ port?.obithome }},<b style="color: black">{{port?.binding}}</b></div>
+      <div v-if="port.binding" :style="{color:port.binding === 'Активен'?'black':'red'}"> {{ port?.obithome }}<b style="color: black">{{port?.binding}}</b></div>
       <button :disabled="!port.cabdiag" @click="togglePre(port)">КабДиаг</button>
       <pre v-if="port.showPre">{{ port.cabdiag }}</pre>
       <hr>
