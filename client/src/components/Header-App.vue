@@ -24,7 +24,7 @@
     </div>
     <MyButtonApp value="Проверить" @click="getPorts"/>
 
-    <div :style="{background:getBackgroundColor(port.status)}" v-show="ports" v-for="port in ports" :key="port" style="max-width: 500px" ref="portsRefs">
+    <div :key="port.port" :style="{background:getBackgroundColor(port.status)}" v-show="ports" v-for="port in ports" style="max-width: 500px" ref="portsRefs">
       <hr>
       <div style="display: flex; justify-content: space-between;">
         <span style="text-align: center;">{{ port.port }}</span>
@@ -32,10 +32,12 @@
       </div>
 
       <div> <b>{{ port?.description }}</b></div>
-      <div> <b>{{ port.fvno?.[0]['Адрес'] }}</b></div>
-      <div v-if="port.binding" :style="{color:port.binding === 'Активен'?'black':'red'}"> {{ port?.obithome }}<b style="color: black">{{port?.binding}}</b></div>
-      <button :disabled="!port.cabdiag" @click="togglePre(port)">КабДиаг</button>
-      <pre v-if="port.showPre">{{ port.cabdiag }}</pre>
+      <div> <b>{{ port.fvno?.[0]?.['Адрес'] }}</b></div>
+      <div v-if="port.binding" :style="{color: port.binding === 'Активен' ? 'black' : 'red'}">
+        {{ port?.obithome }}<b style="color: black">{{ port?.binding }}</b>
+      </div>
+      <button :disabled="!port.cabdiag" @click="togglePre(port)" v-if="port.cabdiag">КабДиаг</button>
+      <pre v-if="port.showPre && port.cabdiag">{{ port.cabdiag }}</pre>
       <hr>
     </div>
     <PreloaderApp :isLoading="loading"/>

@@ -74,13 +74,16 @@ app.get('/get-ports', async (req, res) => {
     let switchesData = {};
     try {
         switchesData = JSON.parse(fileContent);
-    } catch (error) {
+    }  catch (error) {
         console.error('Error parsing switches.json:', error);
+        res.status(500).send('Internal Server Error');
+        return;
     }
     let obit = req.query.obit
         if(switchesData[obit]){
             console.log('Есть такой')
-            res.send(switchesData[obit].ports)
+            res.send(JSON.stringify(switchesData[obit].ports))
+            return
         }
         let ports = await getPortsListWithDescriptionByObit(obit);
         ports = JSON.parse(ports);
@@ -110,7 +113,6 @@ app.get('/get-ports', async (req, res) => {
                 ports[contract].fvno = resolve;
             });
         });
-
         // Ждем, пока все промисы разрешатся
         await Promise.all(fvnoPromises);
         res.write(JSON.stringify(ports))
@@ -125,7 +127,6 @@ app.get('/get-ports', async (req, res) => {
                    await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
                     console.log('Файл с свитчами обновлён');
                     res.write(JSON.stringify(ports))
-
                 })
             }
         });
