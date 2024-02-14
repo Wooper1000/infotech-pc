@@ -1,0 +1,1251 @@
+{
+  "223561": {
+    "ports": {
+      "GigabitEthernet1/0/20": {
+        "contract": "88201824",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.203, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1293, эт. 18 (Гайсова Ирина Борисовна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/24": {
+        "status": "1G",
+        "description": "tpl.zhelezn14k1.17.229.246--GigabitEthernet1/0/24"
+      },
+      "GigabitEthernet1/0/21": {
+        "contract": "88201948",
+        "obithome": "OBITHOME, 10.40.12.195, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1373, эт. 23 (Малкова Рада Валерьевна) (безлимитный 50 мбит) ",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/15": {
+        "status": "100M",
+        "contract": "88210556",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.131, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1188, эт. 12 (Густенев Илья Александрович) (безлимитный 103 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "contract": "88199334",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.98, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1104, эт. 7 (Кляпина Наталья Вячеславовна) (безлимитный 100 мбит) ",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/13": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.23, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1020, эт. 2 (Захаров Ярослав Станиславович) (безлимитный 100 мбит) ",
+        "contract": "88200801",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/12": {
+        "obithome": "OBITHOME, 10.38.181.122, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1326, эт. 20 (Попов Кирилл Алексеевна) (безлимитный 200 мбит) ",
+        "description": null,
+        "contract": "88200159",
+        "status": "DOWN",
+        "binding": "Активен",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/12\nPort        Pair      Status      Length          \nGi1/0/12    Pair-A    Open        70 (+/- 2m)    \n            Pair-B    Open        72 (+/- 2m)    \n            Pair-C    Open        71 (+/- 2m)    \n            Pair-D    Open        70 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/19": {
+        "status": "100M",
+        "contract": "88202091",
+        "obithome": "OBITHOME, 10.40.12.182, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1361, эт. 22 (Кауник Ольга Александровна) (безлимитный 109 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/18": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/18\nPort        Pair      Status      Length          \nGi1/0/18    Pair-A    Open        48 (+/- 2m)    \n            Pair-B    Open        48 (+/- 2m)    \n            Pair-C    Open        47 (+/- 2m)    \n            Pair-D    Open        49 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/4": {
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.49, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1039 (Штефан Аким Андреввич) (безлимитный 100 мбит) ",
+        "contract": "88340905",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/14": {
+        "status": "1G",
+        "contract": "88200357",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.89, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1119, эт. 8 (Гуськов Павел Владимирович) (безлимитный 50 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/9": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.50.251, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1072 (Бокова Кристина Алексеевна) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88337265",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/10": {
+        "status": "DOWN",
+        "description": "#1251140",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/10\nPort        Pair      Status      Length          \nGi1/0/10    Pair-A    Open        49 (+/- 2m)    \n            Pair-B    Open        50 (+/- 2m)    \n            Pair-C    Open        49 (+/- 2m)    \n            Pair-D    Open        48 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/3": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/3\nPort        Pair      Status      Length          \nGi1/0/3     Pair-A    Open        51 (+/- 2m)    \n            Pair-B    Open        51 (+/- 2m)    \n            Pair-C    Open        50 (+/- 2m)    \n            Pair-D    Open        50 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/2": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.109, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1021, эт. 2 (Крюкова Ирина Игоревна) (безлимитный 111 мбит) ",
+        "contract": "88199199",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/11": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.106, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1288, эт. 18 (Васильев Дмитрий Викторович) (безлимитный 100 мбит) ",
+        "contract": "88200002",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/7": {
+        "status": "1G",
+        "contract": "88199799",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.61, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1089, эт. 6 (Дьяков Владислав Иванович) (безлимитный 107 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/23": {
+        "status": "1G",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.163, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1277, эт. 17 (Пивоваров Глеб Александрович) (безлимитный 309 мбит) ",
+        "contract": "88202501",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/16\nPort        Pair      Status      Length          \nGi1/0/16    Pair-A    Open        3 (+/- 2m)     \n            Pair-B    Open        3 (+/- 2m)     \n            Pair-C    Open        3 (+/- 2m)     \n            Pair-D    Open        4 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/17": {
+        "obithome": "OBITHOME, 10.38.181.247, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1239 (Волков Павел Викторович) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88333622",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.67, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1242, эт. 15 (Лазарева Маргарита Максимовна) (безлимитный 100 мбит) ",
+        "contract": "88199668",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/5": {
+        "status": "DOWN",
+        "obithome": "OBITHOME, 10.40.12.60, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1186, эт. 12 (Ярошенко Андрей Викторович) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88205038",
+        "binding": "Обслуживание приостановлено",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/5\nPort        Pair      Status      Length          \nGi1/0/5     Pair-A    Open        48 (+/- 2m)    \n            Pair-B    Open        48 (+/- 2m)    \n            Pair-C    Short       47 (+/- 2m)    \n            Pair-D    Short       47 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/6": {
+        "contract": "88199550",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.81, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1395, эт. 24 (Демина Валерия Юрьевна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/22": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/22\nPort        Pair      Status      Length          \nGi1/0/22    Pair-A    Open        45 (+/- 2m)    \n            Pair-B    Open        46 (+/- 2m)    \n            Pair-C    Open        46 (+/- 2m)    \n            Pair-D    Open        45 (+/- 2m)    \n\n\n"
+      }
+    },
+    "updated": "14.02.2024, 02:37:15"
+  },
+  "224991": {
+    "ports": {
+      "GigabitEthernet1/0/19": {
+        "description": null,
+        "contract": "88204722",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.71, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 573 (Шленкова Наталья Викторовна) (безлимитный 107 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/13": {
+        "obithome": "OBITHOME, 10.40.12.207, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 680, эт. 13 (Хрол Павел Игоревич) (безлимитный 100 мбит) ",
+        "contract": "88201756",
+        "status": "1G",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/12": {
+        "description": null,
+        "status": "100M"
+      },
+      "GigabitEthernet1/0/1": {
+        "contract": "88197663",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.209, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 755, эт. 19 (Сабуров Алексей Анатольевич) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/15": {
+        "description": null,
+        "status": "100M",
+        "contract": "88202949",
+        "obithome": "OBITHOME, 10.40.12.139, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 628, эт. 9 (Лебедев Игорь Александрович) (безлимитный 109 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "obithome": "OBITHOME, 10.38.181.32, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 615, эт. 8 (Молчанова Варвара Андреевна) (безлимитный 100 мбит) ",
+        "contract": "88200553",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/24": {
+        "description": "dlink.zhelezn14k1.16.178.106--port24",
+        "status": "1G"
+      },
+      "GigabitEthernet1/0/21": {
+        "description": null,
+        "contract": "88206703",
+        "obithome": "OBITHOME, 10.40.12.4, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 715, эт. 16 (Шкреметко Ольга Львовна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/5": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.153, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 640, эт. 10 (Орлов Алексей Сергеевич) (безлимитный 212 мбит) ",
+        "contract": "88198479",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "obithome": "OBITHOME, 10.40.12.160, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 654, эт. 11 (Хайруллина Альбина Васыловна) (безлимитный 100 мбит) ",
+        "contract": "88202594",
+        "status": "1G",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/3": {
+        "contract": "88198545",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.144, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 677, эт. 13 (Ушаков Алексей Владимирович) (безлимитный 112 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/6": {
+        "description": null,
+        "contract": "88335755",
+        "obithome": "OBITHOME, 10.38.181.15, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 718, эт. 16 (Шипулина Алина Игоревна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/20": {
+        "description": null,
+        "contract": "88201697",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.237, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 614, эт. 8 (Морсин Анатолий Иванович) (безлимитный 110 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/10": {
+        "contract": "88200450",
+        "obithome": "OBITHOME, 10.38.181.41, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 757, эт. 19 (Алексеенко Алена Владимировна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/14": {
+        "contract": "88333016",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.21, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 692, эт. 14 (Рохлецова Ольга Сергеевна) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/11": {
+        "contract": "88201193",
+        "status": "DOWN",
+        "obithome": "OBITHOME, 10.40.12.246, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 703 (Коротких Надежда Александрович) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Обслуживание приостановлено",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/11\nPort        Pair      Status      Length          \nGi1/0/11    Pair-A    Open        68 (+/- 2m)    \n            Pair-B    Open        65 (+/- 2m)    \n            Pair-C    Open        65 (+/- 2m)    \n            Pair-D    Open        67 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/2": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/2\nPort        Pair      Status      Length          \nGi1/0/2     Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/17": {
+        "description": "#I-APTEKA36--ZHele14",
+        "status": "100M"
+      },
+      "GigabitEthernet1/0/7": {
+        "obithome": "OBITHOME, 10.38.181.88, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 665, эт. 12 (Тихомиров Владислав Эдуардович) (безлимитный 500 мбит) ",
+        "contract": "88199462",
+        "status": "1G",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/4": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/4\nPort        Pair      Status      Length          \nGi1/0/4     Pair-A    Short       17 (+/- 2m)    \n            Pair-B    Open        18 (+/- 2m)    \n            Pair-C    Open        17 (+/- 2m)    \n            Pair-D    Open        18 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/9": {
+        "description": null,
+        "contract": "88201044",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.12, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 679, эт. 13 (Кирчегина Полина Андреевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/18": {
+        "contract": "88203221",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.126, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 705 (Лебедев Павел Алексеевич) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/23": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/23\nPort        Pair      Status      Length          \nGi1/0/23    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/22": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/22\nPort        Pair      Status      Length          \nGi1/0/22    Pair-A    Open        40 (+/- 2m)    \n            Pair-B    Open        39 (+/- 2m)    \n            Pair-C    Open        39 (+/- 2m)    \n            Pair-D    Open        40 (+/- 2m)    \n\n\n"
+      }
+    },
+    "updated": "14.02.2024, 03:18:22"
+  },
+  "225586": {
+    "ports": {
+      "GigabitEthernet1/0/24": {
+        "status": "1G",
+        "description": "tpl.zhelezn14k1.17.227.10--GigabitEthernet1/0/24"
+      },
+      "GigabitEthernet1/0/5": {
+        "contract": "88197392",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.225, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 581, эт. 5 (Селин Михаил Викторович) (безлимитный 63 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/13": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.177, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 683, эт. 13 (Тугушев Эмиль Саидович) (безлимитный 62 мбит) ",
+        "contract": "88198174",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/11": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/11\nPort        Pair      Status      Length          \nGi1/0/11    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/18": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.148, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 544, эт. 2 (Сухов Павел Васильевич) (безлимитный 55 мбит) ",
+        "description": null,
+        "contract": "88198509",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "contract": "88197687",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.213, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 540, эт. 2 (Свиридова Олеся Андреевна) (безлимитный 112 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/9": {
+        "obithome": "OBITHOME, 10.38.181.134, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 751, эт. 18 (Лазуткина Александра Александровна) (безлимитный 100 мбит) ",
+        "status": "1G",
+        "contract": "88198783",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/12": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.154, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 597, эт. 6 (Бадика Егор Максимович) (безлимитный 100 мбит) ",
+        "contract": "88217266",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/10": {
+        "obithome": "OBITHOME, 10.38.181.189, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 682, эт. 6 (Кривых Валерия Дмитриевна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "contract": "88197947",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/4": {
+        "contract": "88211769",
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.43, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 760, эт. 19 (Фирсов Даниил Сергеевич) (безлимитный 52 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/7": {
+        "description": null,
+        "contract": "88197895",
+        "obithome": "OBITHOME, 10.38.181.199, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 541, эт. 2 (Полетова Надежда Валерьевна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.231, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 661, эт. 1 (Уткин Александр Александрович) (безлимитный 113 мбит) ",
+        "description": null,
+        "contract": "88197320",
+        "binding": "Отключен по задолженности более 30 дней"
+      },
+      "GigabitEthernet1/0/14": {
+        "description": null,
+        "contract": "88197995",
+        "obithome": "OBITHOME, 10.38.181.190, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 608, эт. 7 (Кожина Алла Викторовна) (безлимитный 100 мбит) ",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/19": {
+        "contract": "88199589",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.75, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 738, эт. 17 (Гаева Виктория Сергеевна) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/17": {
+        "contract": "88199332",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.99, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 616, эт. 8 (Щербак Александр Игоревич) (безлимитный 100 мбит) ",
+        "status": "DOWN",
+        "binding": "Отключен по задолженности более 30 дней",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/17\nPort        Pair      Status      Length          \nGi1/0/17    Pair-A    Open        40 (+/- 2m)    \n            Pair-B    Open        39 (+/- 2m)    \n            Pair-C    Open        39 (+/- 2m)    \n            Pair-D    Open        39 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/21": {
+        "obithome": "OBITHOME, 10.38.181.86, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 642, эт. 10 (Семенов Иван Николаевич) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "contract": "88199497",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/3": {
+        "obithome": "OBITHOME, 10.38.181.228, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 696, эт. 14 (Моисеев Фёдор Владимирович) (безлимитный 100 мбит) ",
+        "status": "DOWN",
+        "contract": "88197347",
+        "description": null,
+        "binding": "Отключен по задолженности более 30 дней",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/3\nPort        Pair      Status      Length          \nGi1/0/3     Pair-A    Open        39 (+/- 2m)    \n            Pair-B    Open        39 (+/- 2m)    \n            Pair-C    Open        39 (+/- 2m)    \n            Pair-D    Open        39 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/23": {
+        "description": null,
+        "contract": "88202227",
+        "obithome": "OBITHOME, 10.40.12.250, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 764, эт. 19 (Чалова Татьяна Сергеевна) (безлимитный 100 мбит) ",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/22": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/22\nPort        Pair      Status      Length          \nGi1/0/22    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/20": {
+        "contract": "88199530",
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.85, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 740, эт. 17 (Солдаткин Илья Викторович) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.160, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 634, эт. 9 (Покрывчак Александр Васильевич) (безлимитный 112 мбит) ",
+        "description": null,
+        "contract": "88198414",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/6": {
+        "contract": "88334118",
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.28, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 553, эт. 3 (Ракчеева Валентина Николаевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/15": {
+        "obithome": "OBITHOME, 10.38.181.155, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 618, эт. 8 (Василевская Родика Вячеславовна) (безлимитный 312 мбит) ",
+        "status": "1G",
+        "description": null,
+        "contract": "88198223",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/2": {
+        "obithome": "OBITHOME, 10.38.181.235, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 570 (Иконович Юрий Анатольевич) (безлимитный 50 мбит) ",
+        "status": "100M",
+        "description": null,
+        "contract": "88197274",
+        "binding": "Активен"
+      }
+    },
+    "updated": "14.02.2024, 03:20:16"
+  },
+  "225596": {
+    "ports": {
+      "GigabitEthernet1/0/7": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/7\nPort        Pair      Status      Length          \nGi1/0/7     Pair-A    Open        8 (+/- 2m)     \n            Pair-B    Open        9 (+/- 2m)     \n            Pair-C    Open        9 (+/- 2m)     \n            Pair-D    Open        9 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/21": {
+        "description": null,
+        "status": "DOWN",
+        "obithome": "OBITHOME, 10.38.181.146, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1613, эт. 13 (Инкина Юлия Анатольевна) (безлимитный 61 мбит) ",
+        "contract": "88198352",
+        "binding": "Активен",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/21\nPort        Pair      Status      Length          \nGi1/0/21    Pair-A    Open        43 (+/- 2m)    \n            Pair-B    Open        42 (+/- 2m)    \n            Pair-C    Open        41 (+/- 2m)    \n            Pair-D    Open        42 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/15": {
+        "contract": "88217642",
+        "obithome": "OBITHOME, 10.40.12.100, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1664 (Григорьев Артем Сергеевич) (безлимитный 200 мбит) ",
+        "status": "1G",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/17": {
+        "obithome": "OBITHOME, 10.40.12.84, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1685, эт. 17 (Иванин Дмитрий Владимирович) (безлимитный 200 мбит) ",
+        "contract": "88213065",
+        "description": null,
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/2": {
+        "contract": "88196193",
+        "obithome": "OBITHOME, 10.38.181.3, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1598, эт. 12 (Шарафутдинова Альфия Ибрагимовна) (безлимитный 114 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/11": {
+        "obithome": "OBITHOME, 10.40.12.20, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1583 (Надеина Татьяна Николаевна) (безлимитный 100 мбит) ",
+        "contract": "88332636",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "obithome": "OBITHOME, 10.40.12.8, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1465, эт. 4 (Шемет Александра Александровна) (безлимитный 100 мбит) ",
+        "contract": "88332602",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/18": {
+        "contract": "88197809",
+        "obithome": "OBITHOME, 10.38.181.206, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1563, эт. 10 (Буянов Константин Андреевич) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/14": {
+        "status": "100M",
+        "description": null,
+        "contract": "88197502",
+        "obithome": "OBITHOME, 10.38.181.222, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1561, эт. 10 (Мокрецова Полина Александровна) (безлимитный 200 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/24": {
+        "status": "1G",
+        "description": "elt.zhelezn14k1.17.61.222--GigabitEthernet1/0/48"
+      },
+      "GigabitEthernet1/0/22": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/22\nPort        Pair      Status      Length          \nGi1/0/22    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/23": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/23\nPort        Pair      Status      Length          \nGi1/0/23    Pair-A    Open        2 (+/- 2m)     \n            Pair-B    Open        2 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        3 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/6": {
+        "contract": "88217813",
+        "obithome": "OBITHOME, 10.40.50.205, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1515, эт. 7 (Смирнов Василий Сергеевич) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Отключен по задолженности более 30 дней"
+      },
+      "GigabitEthernet1/0/12": {
+        "obithome": "OBITHOME, 10.38.181.221, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1632, эт. 14 (Круликовская Екатерина Максимовна) (безлимитный 100 мбит) ",
+        "contract": "88197505",
+        "description": null,
+        "status": "100M",
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/9": {
+        "contract": "88197335",
+        "obithome": "OBITHOME, 10.38.181.230, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1681, эт. 17 (Грачева Юлия Вячеславовна) (безлимитный 113 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "status": "100M",
+        "description": null,
+        "contract": "88197117",
+        "obithome": "OBITHOME, 10.38.181.244, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1429, эт. 2 (Пундик Мария Алексеевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/13": {
+        "obithome": "OBITHOME, 10.40.12.26, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1497, эт. 6 (Сверкунов Сергей Денисович) (безлимитный 100 мбит) ",
+        "contract": "88334055",
+        "description": null,
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/19": {
+        "obithome": "OBITHOME, 10.38.181.157, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1582, эт. 11 (Чиркова Ирина Владимировна) (безлимитный 112 мбит) ",
+        "contract": "88197834",
+        "description": null,
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/5": {
+        "contract": "88210356",
+        "obithome": "OBITHOME, 10.40.50.202, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1545, эт. 9 (Панасенко Сергей Владимирович) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.26, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1584, эт. 11 (Михайлова Елена Владимировна) (безлимитный 100 мбит) ",
+        "contract": "88216608",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/20": {
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.162, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1594, эт. 12 (Шаяхметова Мусфира Ахнафовна) (безлимитный 100 мбит) ",
+        "contract": "88198407",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/3": {
+        "status": "100M",
+        "description": null,
+        "contract": "88197114",
+        "obithome": "OBITHOME, 10.38.181.246, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1512, эт. 7 (Аристова Тамара Станиславовна) (безлимитный 63 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/4": {
+        "status": "DOWN",
+        "description": "",
+        "contract": "88333842",
+        "obithome": "OBITHOME, 10.38.181.252, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1635 (Черных Сергей Сергеевич) (безлимитный 200 мбит) ",
+        "binding": "Активен",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/4\nPort        Pair      Status      Length          \nGi1/0/4     Pair-A    Open        43 (+/- 2m)    \n            Pair-B    Open        42 (+/- 2m)    \n            Pair-C    Open        41 (+/- 2m)    \n            Pair-D    Open        43 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/10": {
+        "status": "1G",
+        "description": null,
+        "contract": "88197301",
+        "obithome": "OBITHOME, 10.38.181.233, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1580, эт. 11 (Косонин Кирилл Игоревич) (безлимитный 311 мбит) ",
+        "binding": "Активен"
+      }
+    },
+    "updated": "14.02.2024, 03:10:49"
+  },
+  "226394": {
+    "ports": {
+      "GigabitEthernet1/0/2": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.138, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1649, эт. 15 (Кравченко Ксения Васильевна) (безлимитный 62 мбит) ",
+        "contract": "88198730",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "contract": "88198711",
+        "obithome": "OBITHOME, 10.38.181.139, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1577, эт. 11 (Макаревич Никита Сергеевич) (безлимитный 50 мбит) ",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "status": "BLOCKED",
+        "description": null,
+        "cabdiag": "test cable-diagnostics tdr interface GigabitEthernet1/0/8\nCannot perform the test on port in admin status down\nY\n% Unrecognized command\nshow cable-diagnostics tdr interface GigabitEthernet1/0/8\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/8            Not tested     \n\n"
+      },
+      "GigabitEthernet1/0/4": {
+        "contract": "88332307",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.176, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1548, эт. 9 (Пронина Анастасия Юрьевна) (безлимитный 100 мбит) ",
+        "status": "DOWN",
+        "binding": "Активен",
+        "cabdiag": "test cable-diagnostics tdr interface GigabitEthernet1/0/4\n......................\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/4   1-2  Impedance-mismatch      47     14-Feb-2024 03:01:23 \n          3-6  Impedance-mismatch      49     \n          4-5         Open             48     \n          7-8         Open             47     \nshow cable-diagnostics tdr interface GigabitEthernet1/0/4\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/4   1-2  Impedance-mismatch      47     14-Feb-2024 03:01:23 \n          3-6  Impedance-mismatch      49     \n          4-5         Open             48     \n          7-8         Open             47     \n\n"
+      },
+      "GigabitEthernet1/0/3": {
+        "contract": "88199665",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.68, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1428, эт. 2 (Литвинова Светлана Дмитриевна) (безлимитный 50 мбит) ",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/45": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/26": {
+        "status": "DOWN",
+        "contract": "88330417",
+        "obithome": "OBITHOME, 10.38.181.151, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1445, эт. 3 (Варфоломеев Артем Валерьевич) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Отключен по задолженности более 30 дней",
+        "cabdiag": "test cable-diagnostics tdr interface GigabitEthernet1/0/26\n......................\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/26  1-2         Open             8      14-Feb-2024 03:01:02 \n          3-6         Open             8      \n          4-5         Open             8      \n          7-8         Open             8      \nshow cable-diagnostics tdr interface GigabitEthernet1/0/26\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/26  1-2         Open             8      14-Feb-2024 03:01:02 \n          3-6         Open             8      \n          4-5         Open             8      \n          7-8         Open             8      \n\n"
+      },
+      "GigabitEthernet1/0/30": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "test cable-diagnostics tdr interface GigabitEthernet1/0/30\n......................\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/30  1-2         Open             4      14-Feb-2024 03:01:44 \n          3-6         Open             4      \n          4-5         Open             4      \n          7-8         Open             4      \nshow cable-diagnostics tdr interface GigabitEthernet1/0/30\n Port     Pair Result              Length [m] Date\n--------- ---- ------------------- ---------- --------------------------\ngi1/0/30  1-2         Open             4      14-Feb-2024 03:01:44 \n          3-6         Open             4      \n          4-5         Open             4      \n          7-8         Open             4      \n\n"
+      },
+      "GigabitEthernet1/0/41": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/16": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/35": {
+        "contract": "88202577",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.166, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1600, эт. 12 (Мергалева Елена Евгеньевна) (безлимитный 50 мбит) ",
+        "status": "DOWN",
+        "binding": "Обслуживание приостановлено"
+      },
+      "GigabitEthernet1/0/31": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.37, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1510, эт. 7 (Качкаева Дарья Алексеевна) (безлимитный 110 мбит) ",
+        "contract": "88200486",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/40": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/25": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.39, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1495, эт. 6 (Исмаилов Руслан Алигусейнович) (безлимитный 100 мбит) ",
+        "contract": "88340756",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/10": {
+        "obithome": "OBITHOME, 10.40.12.161, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1442, эт. 3 (Дегтярева Марина Владимировна) (безлимитный 109 мбит) ",
+        "description": null,
+        "contract": "88202593",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/46": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/9": {
+        "status": "100M",
+        "contract": "88201180",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.179, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1478, эт. 14 (Устич Елена Сергеевна) (безлимитный 50 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/21": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/5": {
+        "status": "1G",
+        "contract": "88199876",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.50, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1581, эт. 11 (Машкин Алексей Сергеевич) (безлимитный 111 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/11": {
+        "status": "DOWN",
+        "contract": "88203647",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.103, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1652, эт. 15 (Болехов Илья Евгеньевич) (безлимитный 100 мбит) ",
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/36": {
+        "status": "100M",
+        "contract": "88205341",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.51, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1516 (Гончаренко Екатерина Юрьевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/15": {
+        "status": "1G",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.254, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1477, эт. 5 (Димов Александр Викторович) (безлимитный 200 мбит) ",
+        "contract": "88338099",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/7": {
+        "contract": "88201766",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.212, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1564, эт. 10 (Булгакова Елена Георгиевна) (безлимитный 100 мбит) ",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/20": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/14": {
+        "contract": "88337928",
+        "obithome": "OBITHOME, 10.40.50.193, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1684 (Бродовский Даниель Владимирович) (безлимитный 200 мбит) ",
+        "description": null,
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/42": {
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.250, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1531, эт. 8 (Шадорин Александр Георгиевич) (безлимитный 106 мбит) ",
+        "contract": "88206826",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/43": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/32": {
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.196, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1475, эт. 5 (Голбан Татьяна Витальевна) (безлимитный 101 мбит) ",
+        "contract": "88213595",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/24": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/6": {
+        "status": "1G",
+        "contract": "88330537",
+        "obithome": "OBITHOME, 10.38.181.201, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1565, эт. 10 (Горбунова Екатерина Сергеевна) (безлимитный 100 мбит) ",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/33": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/22": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/34": {
+        "status": "BLOCKED",
+        "description": "#1311900"
+      },
+      "GigabitEthernet1/0/23": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/13": {
+        "contract": "88336994",
+        "obithome": "OBITHOME, 10.40.50.233, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1460 (Горохов Максим Игоревич) (безлимитный 100 мбит) ",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/44": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/12": {
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.50.239, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1617 (Алексеев Руслан Олегович) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88207123",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/18": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/37": {
+        "status": "1G",
+        "contract": "88207185",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.236, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1427, эт. 2 (Иванов Николай Евгеньевич) (безлимитный 200 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/29": {
+        "obithome": "OBITHOME, 10.38.181.55, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1667, эт. 16 (Субелиани Мзиури Анатольевна) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88200120",
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/19": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/47": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/28": {
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.69, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1464, эт. 4 (Крючков Артем Валерьевич) (безлимитный 111 мбит) ",
+        "contract": "88199647",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/17": {
+        "status": "DOWN",
+        "description": null
+      },
+      "GigabitEthernet1/0/38": {
+        "obithome": "OBITHOME, 10.40.50.208, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1426, эт. 2 (Тарасенко Светлана Святославовна) (безлимитный 103 мбит) ",
+        "description": null,
+        "contract": "88209544",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/27": {
+        "status": "DOWN",
+        "contract": "88199188",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.111, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1560, эт. 10 (Климанов Александр Николаевич) (безлимитный 50 мбит) ",
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/39": {
+        "description": null,
+        "status": "DOWN"
+      },
+      "GigabitEthernet1/0/48": {
+        "description": "tpl.zhelezn14k1.17.55.190--GigabitEthernet1/0/24",
+        "status": "1G"
+      }
+    },
+    "updated": "14.02.2024, 03:01:59"
+  },
+  "227715": {
+    "ports": {
+      "GigabitEthernet1/0/11": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/11\nPort        Pair      Status      Length          \nGi1/0/11    Pair-A    Short       39 (+/- 2m)    \n            Pair-B    Open        40 (+/- 2m)    \n            Pair-C    Open        39 (+/- 2m)    \n            Pair-D    Open        41 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/18": {
+        "obithome": "OBITHOME, 10.38.181.83, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 580, эт. 5 (Азизова Маргарита Викторовна) (безлимитный 50 мбит) ",
+        "contract": "88215954",
+        "status": "100M",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/9": {
+        "description": null,
+        "status": "100M",
+        "contract": "88203049",
+        "obithome": "OBITHOME, 10.40.12.134, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 737, эт. 17 (Мухамедзянов Тимур Нажилович) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/6": {
+        "description": null,
+        "status": "100M",
+        "contract": "88334689",
+        "obithome": "OBITHOME, 10.38.181.218, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 685, эт. 13 (Хужанбердиев Темирхан ) (безлимитный 100 мбит) ",
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/15": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/15\nPort        Pair      Status      Length          \nGi1/0/15    Pair-A    Open        18 (+/- 2m)    \n            Pair-B    Open        18 (+/- 2m)    \n            Pair-C    Open        19 (+/- 2m)    \n            Pair-D    Open        20 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/2": {
+        "description": null,
+        "status": "1G",
+        "contract": "88215751",
+        "obithome": "OBITHOME, 10.38.181.77, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 750, эт. 18 (Григорьева Татьяна Алексеевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/19": {
+        "contract": "88337868",
+        "obithome": "OBITHOME, 10.40.50.194, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 579, эт. 5 (Осипов Роман Вениаминович) (безлимитный 100 мбит) ",
+        "description": null,
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/5": {
+        "description": null,
+        "status": "100M",
+        "contract": "88208830",
+        "obithome": "OBITHOME, 10.38.181.232, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 583, эт. 12 (Комиссаров Михаил Витальевич) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/22": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/22\nPort        Pair      Status      Length          \nGi1/0/22    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/10": {
+        "obithome": "OBITHOME, 10.38.181.212, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 662, эт. 11 (Лисюк Сергей Григорьевич) (безлимитный 100 мбит) ",
+        "contract": "88330642",
+        "status": "DOWN",
+        "description": null,
+        "binding": "Отключен по задолженности более 30 дней",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/10\nPort        Pair      Status      Length          \nGi1/0/10    Pair-A    Open        59 (+/- 2m)    \n            Pair-B    Open        60 (+/- 2m)    \n            Pair-C    Open        60 (+/- 2m)    \n            Pair-D    Open        60 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/13": {
+        "description": null,
+        "status": "100M",
+        "contract": "88204736",
+        "obithome": "OBITHOME, 10.40.12.70, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 762, эт. 19 (Беляев Александр Алексеевич) (безлимитный 107 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/4": {
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.38.181.54, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 726, эт. 16 (Некрасова Анна Евгеньевна) (безлимитный 100 мбит) ",
+        "contract": "88335957",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/17": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/17\nPort        Pair      Status      Length          \nGi1/0/17    Pair-A    Open        39 (+/- 2m)    \n            Pair-B    Open        39 (+/- 2m)    \n            Pair-C    Open        38 (+/- 2m)    \n            Pair-D    Open        39 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/24": {
+        "status": "1G",
+        "description": "tpl.zhelezn14k1.17.55.242--GigabitEthernet1/0/24"
+      },
+      "GigabitEthernet1/0/7": {
+        "contract": "88202769",
+        "obithome": "OBITHOME, 10.40.12.151, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 644, эт. 5 (Иванова Мария Алексеевна) (безлимитный 101 мбит) ",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/12": {
+        "contract": "88203653",
+        "obithome": "OBITHOME, 10.40.12.102, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 695, эт. 14 (Григорьева Юлия Михайловна) (безлимитный 100 мбит) ",
+        "description": null,
+        "status": "100M",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/3": {
+        "description": null,
+        "status": "1G",
+        "contract": "88217507",
+        "obithome": "OBITHOME, 10.38.181.195, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 594, эт. 6 (Каспирович Сергей Геннадьевич) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "obithome": "OBITHOME, 10.40.12.13, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 700, эт. 14 (Уварова Надежда Александровна) (безлимитный 100 мбит) ",
+        "contract": "88332618",
+        "status": "100M",
+        "description": null,
+        "binding": "Отключен за неуплату (отлож. плат. недоступен)"
+      },
+      "GigabitEthernet1/0/8": {
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.165, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 698, эт. 14 (Локтев Данил Дмитриевич) (безлимитный 59 мбит) ",
+        "contract": "88202573",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/21": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/21\nPort        Pair      Status      Length          \nGi1/0/21    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/14": {
+        "description": null,
+        "status": "100M",
+        "contract": "88204221",
+        "obithome": "OBITHOME, 10.40.12.85, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 748, эт. 18 (Оларь Светлана Константиновна) (безлимитный 108 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/16\nPort        Pair      Status      Length          \nGi1/0/16    Pair-A    Open        1 (+/- 2m)     \n            Pair-B    Open        1 (+/- 2m)     \n            Pair-C    Open        1 (+/- 2m)     \n            Pair-D    Open        1 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/23": {
+        "description": "tpl.zhelezn14k1.17.236.146--GigabitEthernet1/0/24",
+        "status": "1G"
+      },
+      "GigabitEthernet1/0/20": {
+        "description": null,
+        "status": "100M",
+        "contract": "88205581",
+        "obithome": "OBITHOME, 10.40.12.216, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 582, эт. 5 (Полетаева Ольга Витальевна) (безлимитный 105 мбит) ",
+        "binding": "Активен"
+      }
+    },
+    "updated": "14.02.2024, 03:23:00"
+  },
+  "228512": {
+    "ports": {
+      "GigabitEthernet1/0/11": {
+        "description": null,
+        "status": "DOWN",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/11\nPort        Pair      Status      Length          \nGi1/0/11    Pair-A    Open        61 (+/- 2m)    \n            Pair-B    Open        62 (+/- 2m)    \n            Pair-C    Open        61 (+/- 2m)    \n            Pair-D    Open        61 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/17": {
+        "status": "100M",
+        "contract": "88214894",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.242, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1034, эт. 3 (Мендельская Александра Станиславовна) (безлимитный 50 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/20": {
+        "contract": "88203259",
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.122, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1137, эт. 9 (Суханова Екатерина Евгеньевна) (безлимитный 100 мбит) ",
+        "binding": "Обслуживание приостановлено"
+      },
+      "GigabitEthernet1/0/4": {
+        "status": "100M",
+        "contract": "88203642",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.105, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1341, эт. 21 (Нестеров Валерий Леонидович) (безлимитный 108 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/23": {
+        "contract": "88202728",
+        "description": null,
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.12.155, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1343, эт. 21 (Рева Владимир Борисович) (безлимитный 50 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/24": {
+        "description": "tpl.zhelezn14k1.17.48.78--GigabitEthernet1/0/24",
+        "status": "1G"
+      },
+      "GigabitEthernet1/0/2": {
+        "obithome": "OBITHOME, 95.161.217.38, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1023, эт. 2 (Гусев Даниил Игоревич) (безлимитный 107 мбит) ",
+        "status": "1G",
+        "contract": "88203140",
+        "description": null,
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/12": {
+        "description": null,
+        "contract": "88207221",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.50.235, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1118, эт. 8 (Гринченкова Анна Юрьевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/7": {
+        "description": null,
+        "contract": "88219128",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.20, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1051, эт. 7 (Маслобоева Людмила Ивановна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/8": {
+        "description": "#I-AYTI-LAYN--ZHele14",
+        "status": "1G"
+      },
+      "GigabitEthernet1/0/3": {
+        "obithome": "OBITHOME, 10.38.181.35, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1141, эт. 9 (Чикин Александр Дмитриевич) (безлимитный 200 мбит) ",
+        "contract": "88219190",
+        "description": null,
+        "status": "DOWN",
+        "binding": "Услуги ограничены",
+        "cabdiag": "show cable-diagnostics interface gi 1/0/3\nPort        Pair      Status      Length          \nGi1/0/3     Pair-A    Open        26 (+/- 2m)    \n            Pair-B    Open        27 (+/- 2m)    \n            Pair-C    Open        27 (+/- 2m)    \n            Pair-D    Open        26 (+/- 2m)    \n\n\n"
+      },
+      "GigabitEthernet1/0/10": {
+        "status": "100M",
+        "contract": "88206913",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.247, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1360, эт. 22 (Краснова Любовь Сергеевна) (безлимитный 56 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/14": {
+        "status": "1G",
+        "contract": "88207964",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.50.222, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1154, эт. 10 (Лебедева Галина Сергеевна) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/1": {
+        "contract": "88203645",
+        "status": "100M",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.104, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1226, эт. 14 (Казьмин Роман Русланович) (безлимитный 208 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/16": {
+        "description": null,
+        "status": "100M"
+      },
+      "GigabitEthernet1/0/13": {
+        "obithome": "OBITHOME, 10.38.181.229, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1105, эт. 7 (Лысенко Игорь Николаевич) (безлимитный 100 мбит) ",
+        "description": null,
+        "contract": "88342483",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/9": {
+        "description": null,
+        "contract": "88331986",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.112, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1124, эт. 8 (Зерцалов Владимир Анатольевич) (безлимитный 200 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/21": {
+        "status": "DOWN",
+        "description": null,
+        "cabdiag": "show cable-diagnostics interface gi 1/0/21\nPort        Pair      Status      Length          \nGi1/0/21    Pair-A    Open        3 (+/- 2m)     \n            Pair-B    Open        3 (+/- 2m)     \n            Pair-C    Open        3 (+/- 2m)     \n            Pair-D    Open        3 (+/- 2m)     \n\n\n"
+      },
+      "GigabitEthernet1/0/5": {
+        "description": null,
+        "contract": "88333613",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.237, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1050, эт. 4 (Мех Галина Евгеньевна) (безлимитный 100 мбит) ",
+        "binding": "Отключен по задолженности более 30 дней"
+      },
+      "GigabitEthernet1/0/15": {
+        "obithome": "OBITHOME, 10.40.12.74, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1158, эт. 10 (Балакина Любовь Дмитриевна) (безлимитный 102 мбит) ",
+        "description": null,
+        "contract": "88212008",
+        "status": "1G",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/6": {
+        "description": null,
+        "contract": "88213526",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.38.181.2, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1391, эт. 24 (Радина Анна Вадимовна) (безлимитный 100 мбит) ",
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/18": {
+        "description": null,
+        "contract": "88212041",
+        "status": "100M",
+        "obithome": "OBITHOME, 10.40.50.227, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1153, эт. 10 (Юдин Андрей Сергеевич) (безлимитный 101 мбит) ",
+        "binding": "Активен"
+      },
+      "GigabitEthernet1/0/22": {
+        "obithome": "OBITHOME, 10.40.12.148, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1243, эт. 15 (Гаврилов Юрий Васильевич) (безлимитный 100 мбит) ",
+        "status": "100M",
+        "contract": "88202831",
+        "description": null,
+        "binding": "Отключен за неуплату"
+      },
+      "GigabitEthernet1/0/19": {
+        "status": "100M",
+        "contract": "88343250",
+        "description": null,
+        "obithome": "OBITHOME, 10.40.12.30, HOME, (ЖК Стрижи в Невском) СПб, Железнодорожный пр-кт, 14, корп. 1, стр. 1, кв. 1377, эт. 23 (Семенов Владимир Дмитриевич) (безлимитный 100 мбит) ",
+        "binding": "Активен"
+      }
+    },
+    "updated": "14.02.2024, 02:58:44"
+  }
+}
