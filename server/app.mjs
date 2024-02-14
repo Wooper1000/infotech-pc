@@ -1,47 +1,35 @@
-import express from 'express'
-
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import multer from 'multer'
+import express from 'express';
+import https from 'https';
+import fs from 'fs';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import multer from 'multer';
 import config from './config/config.json' assert { type: "json" }
-import {
-    getAddressUid,
-    getContractsByAddress,
-    getJobList,
-    getOrderIP,
-    getTicket,
-    makeCall,
-    getContractInfo,
-    getReport,
-    getJobHistory,
-    test,
-    getEquipmentList,
-    getPortsListByObit,
-    getCabdiagByObitAndPort,
-    getPortsListWithDescriptionByObit,
-    getAddressStructure, getContractStatus, getFvnoPort
-} from "./infotech-requests/requests.mjs";
-
+import { getAddressUid, getContractsByAddress, getJobList, getOrderIP, getTicket, makeCall, getContractInfo, getReport, getJobHistory, test, getEquipmentList, getPortsListByObit, getCabdiagByObitAndPort, getPortsListWithDescriptionByObit, getAddressStructure, getContractStatus, getFvnoPort } from "./infotech-requests/requests.mjs";
 import PhotoUploader from "./infotech-requests/Photo-uploader.mjs";
+import WebSocket, { WebSocketServer } from 'ws';
 
 
-const PORT = config.PORT
-const app = express()
-import expressWs from 'express-ws'
-import fs from 'fs/promises';
- expressWs(app)
+const PORT = config.PORT;
+const app = express();
+const upload = multer({ dest: "./photos" });
 
-const upload = multer({
-    dest: "./photos"
+app.use(cors());
+app.use(bodyParser.json({ extended: true, limit: '50mb' }));
+
+// Загрузка SSL-сертификатов
+const options = {
+    key: fs.readFileSync('../client/src/config/cert/secret.key'),
+    cert: fs.readFileSync('../client/src/config/cert/public.crt')
+};
+
+
+const server = https.createServer(options, app);
+
+const wss = new WebSocketServer({server});
+server.listen(PORT, () => {
+    console.log(`App is listening on port ${PORT} over HTTPS`);
 });
-app.use(cors())
-app.use(bodyParser.json(
-    {
-        extended: true
-        , limit: '50mb'
-    }));
-
-app.listen(PORT, () => console.log('App is listening on port ', PORT))
 let start = null
 app.get('/get-order-list', async (req, res) => {
     start = new Date().getTime()
@@ -70,22 +58,28 @@ app.get('/get-ports', async (req, res) => {
     const filePath = './switches/switches.json';
 
     // Читаем текущее содержимое файла
-    let fileContent = await fs.readFile(filePath, 'utf-8');
+        let fileContent = await fs.promises.readFile(filePath, 'utf8', (err,data)=>{return data});
     let switchesData = {};
-    try {
-        switchesData = JSON.parse(fileContent);
-    }  catch (error) {
-        console.error('Error parsing switches.json:', error);
-        res.status(500).send('Internal Server Error');
-        return;
-    }
+        if(fileContent){
+            try {
+                switchesData = JSON.parse(fileContent);
+            }  catch (error) {
+                console.error('Error parsing switches.json:', error);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+        }
     let obit = req.query.obit
         if(switchesData[obit]){
             console.log('Есть такой')
-            res.send(JSON.stringify(switchesData[obit].ports))
+          let result = JSON.stringify(switchesData[obit].ports)
+            res.send(result);
+            res.end()
             return
+
         }
         let ports = await getPortsListWithDescriptionByObit(obit);
+    let stringifiedPorts = JSON.stringify(ports)
         ports = JSON.parse(ports);
         for(let port in ports){
             if(!ports[port].hasOwnProperty('description') || port.includes('TenGigabit')) delete ports[port]
@@ -115,7 +109,8 @@ app.get('/get-ports', async (req, res) => {
         });
         // Ждем, пока все промисы разрешатся
         await Promise.all(fvnoPromises);
-        res.write(JSON.stringify(ports))
+    // stringifiedPorts = JSON.stringify(ports)
+    //     res.write(stringifiedPorts)
         let cabDiagPromises = Object.keys(ports).map(port => {
             if (!(ports[port].status.includes("100M") || ports[port].status.includes("1G") || ports[port].status.includes("10M"))) {
                 return getCabdiagByObitAndPort(obit, port).then(async resolve=>{
@@ -124,15 +119,20 @@ app.get('/get-ports', async (req, res) => {
                         ports,
                         updated: new Date().toLocaleString('ru-RU')
                     };
-                   await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2));
-                    console.log('Файл с свитчами обновлён');
-                    res.write(JSON.stringify(ports))
+                   await fs.writeFile(filePath, JSON.stringify(switchesData, null, 2),()=>{});
+                    stringifiedPorts = JSON.stringify(ports)
+                    res.write(stringifiedPorts)
                 })
             }
         });
         Promise.all(cabDiagPromises).then(async () => {
             // Добавляем или обновляем данные
             // Записываем обновленные данные в файл
+            setTimeout(()=>{
+                delete switchesData[obit];
+                fs.writeFile(filePath, JSON.stringify(switchesData, null, 2),()=>{})
+                console.log('Удалили switch ',obit)
+            },86400000)
             res.end();
         });
 
@@ -249,43 +249,46 @@ app.get('/get-address-structure',async (req,res)=>{
 })
 let savedOrders = null
 let updateTime = null
-app.ws('/get-orders-list', async(ws, req)=> {
-    let updateOrders = async ()=>{
-        let orders = await getJobList()
-        if (orders){
-            let ordersWithTickets = await Promise.all(orders.map(async (order) => {
-                return {...order, ticket: await getTicket(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
-            }))
-            let ordersWithTicketsAndConfigurations = await Promise.all(ordersWithTickets.map(async (order) => {
-                if (order['ТипРабот'] === 'Аварийные работы') {
-                    return order
-                }
-                return {...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки'])}
-            }))
-            savedOrders = ordersWithTicketsAndConfigurations
-            updateTime = new Date().toLocaleString("ru")
-            return ordersWithTicketsAndConfigurations
-        }
 
-    }
-    ws.on('message',async (msg)=>{
-        console.log('Получил ',msg,' запрос')
-        if(savedOrders && msg==='refresh'){
-            ws.send(JSON.stringify({orders:savedOrders,updateTime}),()=>{
+wss.on('connection', function connection(ws) {
+    console.log('WebSocket client connected');
+    ws.on('message', async (msg) => {
+        msg =  msg.toString()
+        console.log('Получил ', msg, ' запрос')
+        if (savedOrders && msg === 'refresh') {
+            ws.send(JSON.stringify({ orders: savedOrders, updateTime }), () => {
                 console.log('Отправил старые данные в ответ на рефреш')
             })
-            ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
-                console.log('Отправил результат в догонку к рефрешу')})
-        }
-        else{
-            ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
-                console.log('Отправил результат после update')})
-            setInterval(async()=>{
-                ws.send(JSON.stringify({orders:await updateOrders(),updateTime}),()=>{
+            ws.send(JSON.stringify({ orders: await updateOrders(), updateTime }), () => {
+                console.log('Отправил результат в догонку к рефрешу')
+            })
+        } else {
+            ws.send(JSON.stringify({ orders: await updateOrders(), updateTime }), () => {
+                console.log('Отправил результат после update')
+            })
+            setInterval(async () => {
+                ws.send(JSON.stringify({ orders: await updateOrders(), updateTime }), () => {
                     console.log('Отправил результат по интервалу')
                 })
-            },600000)
+            }, 600000)
         }
     })
 });
+async function updateOrders() {
+    let orders = await getJobList();
+    if (orders) {
+        let ordersWithTickets = await Promise.all(orders.map(async (order) => {
+            return { ...order, ticket: await getTicket(order['РегистрационныйНомерВСистемеИсточникеЗаявки']) }
+        }))
+        let ordersWithTicketsAndConfigurations = await Promise.all(ordersWithTickets.map(async (order) => {
+            if (order['ТипРабот'] === 'Аварийные работы') {
+                return order
+            }
+            return { ...order, configurations: await getOrderIP(order['РегистрационныйНомерВСистемеИсточникеЗаявки']) }
+        }))
+        savedOrders = ordersWithTicketsAndConfigurations;
+        updateTime = new Date().toLocaleString("ru");
+        return ordersWithTicketsAndConfigurations;
+    }
+}
 

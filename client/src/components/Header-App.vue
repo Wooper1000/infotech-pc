@@ -122,33 +122,55 @@ export default {
 
       }
     },
-    async getPorts() {
+    async getPorts(event) {
+      event.target.blur();
+      console.log(event)
       // const inputs = document.querySelectorAll('input');
       // inputs.forEach((input) => {
       //   input.blur();
       // });
       if (this.switchObit) {
-        this.ports=[]
+        this.ports = [];
         this.loading = true;
-        let response = await fetch(config.serverURL + '/get-ports' + `?obit=${this.switchObit}`);
-        const reader = response.body.getReader();
-        let a = true
-        while (a) {
-          const {done, value} = await reader.read();
-          if (done) {
+        let retries = 5; // Количество попыток парсинга
+        while (retries > 0) {
+          let response = await fetch(config.serverURL + '/get-ports' + `?obit=${this.switchObit}`);
+          const reader = response.body.getReader();
+          let a = true;
+          while (a) {
+            const { done, value } = await reader.read();
+            if (done) {
+              break;
+            }
+            let textToDecode = new TextDecoder().decode(value);
+            try {
+              let ports = JSON.parse(textToDecode);
+              this.ports = Object.keys(ports).map(port => {
+                return { ...ports[port], port };
+              }).sort((port1, port2) => {
+                const num1 = parseInt(port1.port.split('/').pop(), 10);
+                const num2 = parseInt(port2.port.split('/').pop(), 10);
+                return num1 - num2;
+              });
+              // Если удалось распарсить, выходим из цикла
+              a = false;
+            } catch (err) {
+              console.log(err);
+              // Уменьшаем количество попыток и продолжаем цикл
+              retries--;
+              if (retries === 0) {
+                // Если попытки закончились, выбрасываем ошибку в консоль
+                console.error('Reached maximum retries, unable to parse JSON.');
+              }
+            }
+          }
+          // Если удалось распарсить, выходим из цикла
+          if (!a) {
             break;
           }
-          let ports = JSON.parse(new TextDecoder().decode(value))
-
-          this.ports = Object.keys(ports).map(port => {
-            return {...ports[port], port}
-          }).sort((port1, port2) => {
-            const num1 = parseInt(port1.port.split('/').pop(), 10);
-            const num2 = parseInt(port2.port.split('/').pop(), 10);
-            return num1 - num2;
-          });
         }
       }
+
 
       // await getPorts(this.switchObit, async (data) => {
       //   this.ports.push(JSON.parse(data));

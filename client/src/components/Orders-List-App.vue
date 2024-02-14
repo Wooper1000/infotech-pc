@@ -25,7 +25,7 @@ export default {
     isUpdating:false
     }
   },
-methods:{
+  methods:{
   update(){
     this.isUpdating = true
     this.$store.state.socket.send("update");

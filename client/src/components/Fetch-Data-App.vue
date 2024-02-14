@@ -10,7 +10,8 @@ export default {
   },
    created() {
      this.$store.commit('isLoading', true);
-    this.socket = new WebSocket(`${config.websocketURL}/get-orders-list`)
+    this.socket = new WebSocket(`${config.websocketURL}`)
+
      this.$store.commit('setSocket',this.socket)
      this.socket.onopen = ()=>{
        console.log('WebSocket соеденение налажено')
@@ -35,7 +36,6 @@ export default {
       let equipmentListPromise = fetch(config.serverURL + '/get-equipment-list');
       let currentMonthSalaryPromise = fetch(config.serverURL + '/get-report');
       let prevMonthSalaryPromise = fetch(config.serverURL + '/get-report?variant=Предыдущиймесяц');
-
 
       equipmentListPromise.then(async res => {
         let equipmentList = await res.json();

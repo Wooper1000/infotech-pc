@@ -1,4 +1,4 @@
 {
-  "serverURL": "http://188.143.200.86:3000",
-  "websocketURL":"ws://188.143.200.86:3000"
+  "serverURL": "https://server.wooper.keenetic.link",
+  "websocketURL":"wss://server.wooper.keenetic.link"
 }
