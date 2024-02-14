@@ -135,7 +135,7 @@ this.detailsVisibility = value
 
 .visit-slot {
   font-weight: bold;
-  width: 50%;
+  width: 45%;
   text-align: center;
 }
 
@@ -145,16 +145,16 @@ this.detailsVisibility = value
 
 .order-info {
   display: inline-table;
-  width: 50%;
+  width: 55%;
 }
 .order-status {
   text-align: center;
-  width: 50%;
+  width: 40%;
   display: table-cell;
   vertical-align: middle
 }
 .contract-number {
-  width: 50%;
+  width: 60%;
   text-align: center;
   display: table-cell;
   vertical-align: middle
